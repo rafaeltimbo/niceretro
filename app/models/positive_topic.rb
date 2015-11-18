@@ -1,0 +1,2 @@
+class PositiveTopic < Topic
+end

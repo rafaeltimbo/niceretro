@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  retrospective_id: 1
+  user: MyString
+  status: MyString
+
+two:
+  description: MyText
+  retrospective_id: 1
+  user: MyString
+  status: MyString
