@@ -32,14 +32,6 @@ ActiveRecord::Schema.define(version: 20151118201534) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "retros", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "date"
-    t.integer  "room"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "retrospectives", force: :cascade do |t|
     t.string   "title"
     t.datetime "date"
