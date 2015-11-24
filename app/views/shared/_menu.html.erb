@@ -5,13 +5,11 @@
     <nav class="ls-menu">
       <ul>
         <li>
-          <a href="#" class="ls-ico-home" title="Página Inicial">Página Inicial</a>
+          <%= link_to 'Página Inicial', root_path, class: 'ls-ico-home', title: 'Página Inicial' %>
         </li>
         <li>
-          <!-- <a href="#" class="ls-ico-plus" title="Criar Retrospectiva">Criar Retrospectiva</a> -->
-          <%= link_to 'Criar Retrospectiva', 'retrospective/new', class: 'ls-ico-plus', title: 'Criar Retrospectiva' %>
+          <%= link_to 'Criar Retrospectiva', new_retrospective_path, class: 'ls-ico-plus', title: 'Criar Retrospectiva' %>
         </li>
-        <!-- <li><a href="#" class="ls-ico-text" title="Lista de Retrospectivas">Lista de Retrospectivas</a></li> -->
       </ul>
     </nav>
 

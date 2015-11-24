@@ -1,0 +1,8 @@
+<h1 class="ls-title-intro ls-ico-plus">Nova Retrospectiva</h1>
+
+<%= form_for(@retrospective) do |f| %>
+  Título: <%= f.text_field :title %> <br>
+  Data: <%= f.date_select :date %> <br>
+  Sala: <%= f.number_field :room %> <br>
+  <%= f.submit %>
+<% end %>

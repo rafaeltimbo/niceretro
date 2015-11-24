@@ -1,0 +1,30 @@
+<h1 class="ls-title-intro ls-ico-home">Página Inicial</h1>
+
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3">Lista de Restrospectivas</h2>
+  </header>
+  <table class="ls-table">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Data</th>
+        <th>Sala</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @retrospectives.each do |r| %>
+        <tr>
+          <td><a href="#"><%= r.title %></a></td>
+          <td><a href="#"><%= r.date %></a></td>
+          <td><a href="#">Sala <%= r.room %></a></td>
+          <td>
+            <%= link_to 'Deletar', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

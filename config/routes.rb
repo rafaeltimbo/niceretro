@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :retrospective
-  get '/new' => 'retrospective#new'
+  root 'retrospectives#index'
+
+  get '/retrospectives' => redirect('/')
+
+  resources :retrospectives
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
