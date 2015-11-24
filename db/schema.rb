@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118201534) do
+ActiveRecord::Schema.define(version: 20151124123147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,16 @@ ActiveRecord::Schema.define(version: 20151118201534) do
     t.datetime "updated_at",       null: false
   end
 
+  add_index "actions", ["retrospective_id"], name: "index_actions_on_retrospective_id", using: :btree
+
   create_table "doubts", force: :cascade do |t|
     t.text     "description"
     t.integer  "retrospective_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "doubts", ["retrospective_id"], name: "index_doubts_on_retrospective_id", using: :btree
 
   create_table "retrospectives", force: :cascade do |t|
     t.string   "title"
@@ -47,5 +51,7 @@ ActiveRecord::Schema.define(version: 20151118201534) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "topics", ["retrospective_id"], name: "index_topics_on_retrospective_id", using: :btree
 
 end
