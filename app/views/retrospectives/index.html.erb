@@ -1,16 +1,16 @@
-<h1 class="ls-title-intro ls-ico-home">Página Inicial</h1>
+<h1 class="ls-title-intro ls-ico-home"><%= t('initial_page') %></h1>
 
 <div class="ls-box ls-board-box">
   <header class="ls-info-header">
-    <h2 class="ls-title-3">Lista de Restrospectivas</h2>
+    <h2 class="ls-title-3"><%= t('retrospectives_list') %></h2>
   </header>
   <table class="ls-table">
     <thead>
       <tr>
-        <th>Título</th>
-        <th>Data</th>
-        <th>Sala</th>
-        <th>Ações</th>
+        <th><%= t('table.title') %></th>
+        <th><%= t('table.date') %></th>
+        <th><%= t('table.room') %></th>
+        <th><%= t('table.actions') %></th>
       </tr>
     </thead>
     <tbody>
@@ -18,9 +18,9 @@
         <tr>
           <td><a href="#"><%= r.title %></a></td>
           <td><a href="#"><%= r.date %></a></td>
-          <td><a href="#">Sala <%= r.room %></a></td>
+          <td><a href="#"><%= t('table.room') %> <%= r.room %></a></td>
           <td>
-            <%= link_to 'Deletar', r, :class => 'ls-btn-danger', method: :delete %>
+            <%= link_to t('button.delete'), r, :class => 'ls-btn-danger', method: :delete %>
           </td>
         </tr>
       <% end %>
