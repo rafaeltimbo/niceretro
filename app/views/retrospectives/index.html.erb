@@ -20,7 +20,7 @@
           <td><a href="#"><%= r.date %></a></td>
           <td><a href="#">Sala <%= r.room %></a></td>
           <td>
-            <%= link_to 'Deletar', method: :delete %>
+            <%= link_to 'Deletar', r, :class => 'ls-btn-danger', method: :delete %>
           </td>
         </tr>
       <% end %>
