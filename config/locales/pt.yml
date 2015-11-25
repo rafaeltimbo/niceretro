@@ -24,3 +24,4 @@ pt:
       - :day
       - :month
       - :year
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Augosto, Setembro, Outubro, Novembro, Dezembro]
