@@ -19,3 +19,8 @@ pt:
     date: 'Data'
     room: 'Sala'
     actions: 'Ações'
+  date:
+    order:
+      - :day
+      - :month
+      - :year
