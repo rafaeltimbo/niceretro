@@ -20,4 +20,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  initial_page: 'Initial Page'
+  retrospectives_list: 'Retrospectives List'
+  menu:
+    initial_page: 'Initial Page'
+    create_retrospective: 'Create Retrospective'
+  table:
+    title: 'Title'
+    date: 'Date'
+    room: 'Room'
+    actions: 'Actions'
+  button:
+    delete: 'Delete'
+    edit: 'Edit'
+  new:
+    new_retrospective: 'News Retrospective'
+    create_retrospective: 'Create Retrospective'
+    title: 'Title'
+    date: 'Date'
+    room: 'Room'
+    actions: 'Actions'

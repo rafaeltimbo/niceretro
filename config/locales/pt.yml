@@ -1,0 +1,21 @@
+pt:
+  initial_page: 'Página Inicial'
+  retrospectives_list: 'Lista de Restrospectivas'
+  menu:
+    initial_page: 'Página Inicial'
+    create_retrospective: 'Criar Retrospectiva'
+  table:
+    title: 'Título'
+    date: 'Data'
+    room: 'Sala'
+    actions: 'Ações'
+  button:
+    delete: 'Deletar'
+    edit: 'Editar'
+  new:
+    new_retrospective: 'Nova Retrospectiva'
+    create_retrospective: 'Criar Retrospectiva'
+    title: 'Título'
+    date: 'Data'
+    room: 'Sala'
+    actions: 'Ações'

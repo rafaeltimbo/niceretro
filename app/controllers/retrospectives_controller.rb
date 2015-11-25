@@ -19,7 +19,7 @@ class RetrospectivesController < ApplicationController
     @retrospective = Retrospective.find(params[:id])
     @retrospective.destroy
 
-    if @retrospective.save
+    if @retrospective.destroyed?
       redirect_to :action => :index
     end
   end
