@@ -13,12 +13,16 @@ pt:
     delete: 'Deletar'
     edit: 'Editar'
   new:
-    new_retrospective: 'Nova Retrospectiva'
-    create_retrospective: 'Criar Retrospectiva'
+    page_title: 'Nova Retrospectiva'
+  edit:
+    page_title: 'Editar Retrospectiva'
+  form:
     title: 'Título'
     date: 'Data'
     room: 'Sala'
     actions: 'Ações'
+    save: 'Salvar'
+    cancel: 'Cancelar'
   date:
     order:
       - :day
