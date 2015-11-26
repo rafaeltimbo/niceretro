@@ -1,22 +1,3 @@
-<h1 class="ls-title-intro ls-ico-plus"><%= t('new.new_retrospective') %></h1>
+<h1 class="ls-title-intro ls-ico-plus"><%= t('new.page_title') %></h1>
 
-<fieldset class="row col-md-4
-">
-  <%= form_for @retrospective, html: { class: 'ls-form row' } do |f| %>
-    <label class="ls-label col-md-12">
-      <b class="ls-label-text"><%= t('new.title') %>:</b>
-      <%= f.text_field :title %>
-    </label>
-    <label class="ls-label col-md-12">
-      <b class="ls-label-text"><%= t('new.date') %>:</b>
-      <%= f.date_select :date, html_options = { class: 'ls-select' } %>
-    </label>
-    <label class="ls-label col-md-12">
-      <b class="ls-label-text"><%= t('new.room') %>:</b>
-      <%= f.number_field :room %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('new.create_retrospective'), :class => 'ls-btn-primary' %>
-    </div>
-  <% end %>
-</fieldset>
+<%= render 'form' %>

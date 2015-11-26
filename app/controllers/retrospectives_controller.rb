@@ -11,7 +11,20 @@ class RetrospectivesController < ApplicationController
     @retrospective = Retrospective.new(retrospectives_params)
 
     if @retrospective.save
-      redirect_to :action => :index
+      redirect_to retrospectives_path
+    end
+  end
+
+  def edit
+    @retrospective = Retrospective.find(params[:id])
+  end
+
+  def update
+    @retrospective = Retrospective.find(params[:id])
+    if @retrospective.update_attributes(retrospectives_params)
+      redirect_to retrospectives_path
+    else
+      render :edit
     end
   end
 
@@ -20,7 +33,7 @@ class RetrospectivesController < ApplicationController
     @retrospective.destroy
 
     if @retrospective.destroyed?
-      redirect_to :action => :index
+      redirect_to retrospectives_path
     end
   end
 
