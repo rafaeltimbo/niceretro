@@ -12,6 +12,7 @@ pt:
   button:
     delete: 'Deletar'
     edit: 'Editar'
+    view: 'Visualizar'
   new:
     page_title: 'Nova Retrospectiva'
   edit:
