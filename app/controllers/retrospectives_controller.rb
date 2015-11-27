@@ -39,6 +39,10 @@ class RetrospectivesController < ApplicationController
 
   def show
     @retrospective = Retrospective.find(params[:id])
+
+    #Doubts
+    @doubts = @retrospective.doubts
+    @doubt = Doubt.new
   end
 
   private

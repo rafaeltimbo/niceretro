@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get '/retrospectives' => redirect('/')
 
-  resources :retrospectives
+  resources :retrospectives do
+    resources :doubts
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
