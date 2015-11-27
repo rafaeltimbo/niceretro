@@ -1,5 +1,6 @@
 <h1 class="ls-title-intro ls-ico-eye"><%= @retrospective.title %> - <%= l @retrospective.date.to_date, format: :default %></h1>
 
+<!-- Doubts -->
 <div class="ls-box ls-board-box">
   <header class="ls-info-header">
     <h2 class="ls-title-3">Dúvidas</h2>
@@ -24,6 +25,38 @@
           <td><%= i %>. <%= d.description %></td>
           <td>
             <%= link_to '', [@retrospective, d], :class => 'ls-btn-danger ls-ico-close', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Positive Topics -->
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3">Pontos Positivos</h2>
+  </header>
+  <%= form_for [@retrospective, @positive_topic], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+    <label class="ls-label col-md-6">
+      <%= f.text_field :description %>
+    </label>
+    <div class="ls-actions-btn">
+      <%= f.submit t('form.add'), :class => 'ls-btn-primary' %>
+    </div>
+  <% end %>
+
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <th>Ponto Positivo</th>
+      <th>Ação</th>
+    </thead>
+    <tbody>
+      <% @positive_topics.each.with_index(1) do |p, i| %>
+        <tr>
+          <td><%= i %>. <%= p.description %></td>
+          <td>
+            <%= link_to '', [@retrospective, p], :class => 'ls-btn-danger ls-ico-close', method: :delete %>
           </td>
         </tr>
       <% end %>

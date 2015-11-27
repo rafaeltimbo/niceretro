@@ -43,6 +43,10 @@ class RetrospectivesController < ApplicationController
     #Doubts
     @doubts = @retrospective.doubts
     @doubt = Doubt.new
+
+    #Topics
+    @positive_topics = @retrospective.positive_topics
+    @positive_topic = PositiveTopic.new
   end
 
   private
