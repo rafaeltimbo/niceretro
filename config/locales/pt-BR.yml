@@ -1,4 +1,4 @@
-pt:
+pt-BR:
   initial_page: 'Página Inicial'
   retrospectives_list: 'Lista de Restrospectivas'
   menu:
@@ -24,9 +24,4 @@ pt:
     actions: 'Ações'
     save: 'Salvar'
     cancel: 'Cancelar'
-  date:
-    order:
-      - :day
-      - :month
-      - :year
-    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Augosto, Setembro, Outubro, Novembro, Dezembro]
+    add: '+ adicionar'
