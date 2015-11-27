@@ -2,7 +2,6 @@ class DoubtsController < ApplicationController
   before_action :get_retrospective_id
 
   def create
-    # binding.pry
     @retrospective = Retrospective.find(@retrospective_id)
     @doubt = @retrospective.doubts.build(doubts_params)
 
