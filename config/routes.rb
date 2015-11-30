@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :retrospectives do
     resources :doubts
     resources :positive_topics
+    resources :negative_topics
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

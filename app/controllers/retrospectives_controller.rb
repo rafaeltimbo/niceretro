@@ -44,9 +44,13 @@ class RetrospectivesController < ApplicationController
     @doubts = @retrospective.doubts
     @doubt = Doubt.new
 
-    #Topics
+    #Positive Topics
     @positive_topics = @retrospective.positive_topics
     @positive_topic = PositiveTopic.new
+
+    #Negative Topics
+    @negative_topics = @retrospective.negative_topics
+    @negative_topic = NegativeTopic.new
   end
 
   private

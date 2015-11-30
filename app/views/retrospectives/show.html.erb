@@ -63,3 +63,35 @@
     </tbody>
   </table>
 </div>
+
+<!-- Negative Topics -->
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3">Pontos Negativos</h2>
+  </header>
+  <%= form_for [@retrospective, @negative_topic], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+    <label class="ls-label col-md-6">
+      <%= f.text_field :description %>
+    </label>
+    <div class="ls-actions-btn">
+      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
+    </div>
+  <% end %>
+
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <th>Ponto Negativo</th>
+      <th>Ação</th>
+    </thead>
+    <tbody>
+      <% @negative_topics.each.with_index(1) do |p, i| %>
+        <tr>
+          <td><%= i %>. <%= p.description %></td>
+          <td>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
