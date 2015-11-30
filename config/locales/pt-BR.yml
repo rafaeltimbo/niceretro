@@ -1,6 +1,7 @@
 pt-BR:
   initial_page: 'Página Inicial'
   retrospectives_list: 'Lista de Restrospectivas'
+  confirm: Você tem certeza que deseja excluir?
   menu:
     initial_page: 'Página Inicial'
     create_retrospective: 'Criar Retrospectiva'

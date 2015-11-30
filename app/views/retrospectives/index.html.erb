@@ -22,7 +22,7 @@
           <td>
             <%= link_to t('button.view'), retrospective_path(r), class: 'ls-btn-primary' %>
             <%= link_to t('button.edit'), edit_retrospective_path(r.id), class: 'ls-btn' %>
-            <%= link_to t('button.delete'), r, class: 'ls-btn-danger', method: :delete %>
+            <%= link_to t('button.delete'), r, class: 'ls-btn-danger', method: :delete, data: { confirm: t('confirm') } %>
           </td>
         </tr>
       <% end %>
