@@ -10,7 +10,7 @@
       <%= f.text_field :description %>
     </label>
     <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), :class => 'ls-btn-primary' %>
+      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
     </div>
   <% end %>
 
@@ -24,7 +24,7 @@
         <tr>
           <td><%= i %>. <%= d.description %></td>
           <td>
-            <%= link_to '', [@retrospective, d], :class => 'ls-btn-danger ls-ico-close', method: :delete %>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete %>
           </td>
         </tr>
       <% end %>
@@ -42,7 +42,7 @@
       <%= f.text_field :description %>
     </label>
     <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), :class => 'ls-btn-primary' %>
+      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
     </div>
   <% end %>
 
@@ -56,7 +56,7 @@
         <tr>
           <td><%= i %>. <%= p.description %></td>
           <td>
-            <%= link_to '', [@retrospective, p], :class => 'ls-btn-danger ls-ico-close', method: :delete %>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
           </td>
         </tr>
       <% end %>

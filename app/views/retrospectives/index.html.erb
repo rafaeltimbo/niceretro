@@ -20,9 +20,9 @@
           <td><a href="#"><%= l r.date.to_date, format: :default %></a></td>
           <td><a href="#"><%= t('table.room') %> <%= r.room %></a></td>
           <td>
-            <%= link_to t('button.view'), retrospective_path(r), :class => 'ls-btn-primary' %>
-            <%= link_to t('button.edit'), edit_retrospective_path(r.id), :class => 'ls-btn' %>
-            <%= link_to t('button.delete'), r, :class => 'ls-btn-danger', method: :delete %>
+            <%= link_to t('button.view'), retrospective_path(r), class: 'ls-btn-primary' %>
+            <%= link_to t('button.edit'), edit_retrospective_path(r.id), class: 'ls-btn' %>
+            <%= link_to t('button.delete'), r, class: 'ls-btn-danger', method: :delete %>
           </td>
         </tr>
       <% end %>
