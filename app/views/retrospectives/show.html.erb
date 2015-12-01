@@ -1,5 +1,37 @@
 <h1 class="ls-title-intro ls-ico-eye"><%= @retrospective.title %> - <%= l @retrospective.date.to_date, format: :default %></h1>
 
+<!-- Actions -->
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3">Ações</h2>
+  </header>
+  <%= form_for [@retrospective, @action], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+    <label class="ls-label col-md-6">
+      <%= f.text_field :description %>
+    </label>
+    <div class="ls-actions-btn">
+      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
+    </div>
+  <% end %>
+
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <th>Ação</th>
+      <th>Ação</th>
+    </thead>
+    <tbody>
+      <% @actions.each.with_index(1) do |a, i| %>
+        <tr>
+          <td><%= i %>. <%= a.description %></td>
+          <td>
+            <%= link_to '', [@retrospective, a], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <!-- Doubts -->
 <div class="ls-box ls-board-box">
   <header class="ls-info-header">
