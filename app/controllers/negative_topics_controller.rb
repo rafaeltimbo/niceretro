@@ -11,7 +11,7 @@ class NegativeTopicsController < ApplicationController
   end
 
   def destroy
-    @negative_topic = PositiveTopic.find(params[:id])
+    @negative_topic = NegativeTopic.find(params[:id])
     @negative_topic.destroy
 
     if @negative_topic.destroyed?
