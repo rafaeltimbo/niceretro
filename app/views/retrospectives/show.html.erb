@@ -1,11 +1,11 @@
 <h1 class="ls-title-intro ls-ico-eye"><%= @retrospective.title %> - <%= l @retrospective.date.to_date, format: :default %></h1>
 
-<!-- Doubts -->
+<!-- Actions -->
 <div class="ls-box ls-board-box">
   <header class="ls-info-header">
-    <h2 class="ls-title-3">Dúvidas</h2>
+    <h2 class="ls-title-3">Ações</h2>
   </header>
-  <%= form_for [@retrospective, @doubt], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+  <%= form_for [@retrospective, @demand], html: { class: 'ls-form ls-form-inline row' } do |f| %>
     <label class="ls-label col-md-6">
       <%= f.text_field :description %>
     </label>
@@ -16,11 +16,11 @@
 
   <table class="ls-table ls-table-striped">
     <thead>
-      <th>Dúvida</th>
+      <th>Ação</th>
       <th>Ação</th>
     </thead>
     <tbody>
-      <% @doubts.each.with_index(1) do |d, i| %>
+      <% @demands.each.with_index(1) do |d, i| %>
         <tr>
           <td><%= i %>. <%= d.description %></td>
           <td>
@@ -89,6 +89,38 @@
           <td><%= i %>. <%= p.description %></td>
           <td>
             <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Doubts -->
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3">Dúvidas</h2>
+  </header>
+  <%= form_for [@retrospective, @doubt], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+    <label class="ls-label col-md-6">
+      <%= f.text_field :description %>
+    </label>
+    <div class="ls-actions-btn">
+      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
+    </div>
+  <% end %>
+
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <th>Dúvida</th>
+      <th>Ação</th>
+    </thead>
+    <tbody>
+      <% @doubts.each.with_index(1) do |d, i| %>
+        <tr>
+          <td><%= i %>. <%= d.description %></td>
+          <td>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete %>
           </td>
         </tr>
       <% end %>

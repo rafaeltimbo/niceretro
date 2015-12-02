@@ -39,21 +39,33 @@ class RetrospectivesController < ApplicationController
 
   def show
     @retrospective = Retrospective.find(params[:id])
-
-    #Doubts
-    @doubts = @retrospective.doubts
-    @doubt = Doubt.new
-
-    #Positive Topics
-    @positive_topics = @retrospective.positive_topics
-    @positive_topic = PositiveTopic.new
-
-    #Negative Topics
-    @negative_topics = @retrospective.negative_topics
-    @negative_topic = NegativeTopic.new
+    demands_setup
+    doubts_setup
+    positive_topics_setup
+    negative_topics_setup
   end
 
   private
+
+  def demands_setup
+    @demands = @retrospective.demands
+    @demand = Demand.new
+  end
+
+  def doubts_setup
+    @doubts = @retrospective.doubts
+    @doubt = Doubt.new
+  end
+
+  def positive_topics_setup
+    @positive_topics = @retrospective.positive_topics
+    @positive_topic = PositiveTopic.new
+  end
+
+  def negative_topics_setup
+    @negative_topics = @retrospective.negative_topics
+    @negative_topic = NegativeTopic.new
+  end
 
   def retrospectives_params
     params.require(:retrospective).permit(:title, :date, :room)

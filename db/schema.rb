@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124123147) do
+ActiveRecord::Schema.define(version: 20151202105844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "actions", force: :cascade do |t|
+  create_table "demands", force: :cascade do |t|
     t.text     "description"
     t.integer  "retrospective_id"
     t.string   "user"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151124123147) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "actions", ["retrospective_id"], name: "index_actions_on_retrospective_id", using: :btree
+  add_index "demands", ["retrospective_id"], name: "index_demands_on_retrospective_id", using: :btree
 
   create_table "doubts", force: :cascade do |t|
     t.text     "description"
