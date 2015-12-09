@@ -5,26 +5,50 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Ações</h2>
   </header>
-  <%= form_for [@retrospective, @demand], html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
+  <%= form_for [@retrospective, @demand], remote: true, html: { class: 'ls-form ls-form-horizontal' } do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+        <label class="ls-label ls-no-margin-bottom">
+          <b class="ls-label-text">Descrição</b>
+          <%= f.text_field :description %>
+        </label>
+      </div>
+      <div class="col-md-2">
+        <label class="ls-label ls-no-margin-bottom">
+          <b class="ls-label-text">Responsável</b>
+          <%= f.text_field :user %>
+        </label>
+      </div>
       <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
     </div>
   <% end %>
 
-  <table class="ls-table ls-table-striped">
+  <table id="demand-table" class="ls-table ls-table-striped">
     <thead>
       <th>Ação</th>
-      <th>Ação</th>
+      <th>Responsável</th>
+      <th>Status</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
-      <% @demands.each.with_index(1) do |d, i| %>
-        <tr>
-          <td><%= i %>. <%= d.description %></td>
+      <% @demands.each do |d| %>
+        <tr data-id="<%= d.id %>">
+          <td><%= d.description %></td>
+          <td><%= d.user %></td>
           <td>
-            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <div data-ls-module="switchButton" class="ls-switch-btn">
+              <input type="checkbox">
+              <label class="ls-switch-label" for="teste" name="label-teste" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
+            </div>
+          </td>
+          <td>
+            <div data-ls-module="dropdown" class="ls-dropdown">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><a href="#">Editar</a></li>
+                <li><%= link_to 'Excluir', [@retrospective, d], method: :delete, data: { confirm: t('confirm') }, remote: true %></li>
+              </ul>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -37,7 +61,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Positivos</h2>
   </header>
-  <%= form_for [@retrospective, @positive_topic], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+  <%= form_for [@retrospective, @positive_topic], remote: true, html: { class: 'ls-form ls-form-inline row' } do |f| %>
     <label class="ls-label col-md-6">
       <%= f.text_field :description %>
     </label>
@@ -46,17 +70,18 @@
     </div>
   <% end %>
 
-  <table class="ls-table ls-table-striped">
+  <table class="ls-table ls-table-striped" id="positive-topics-table">
     <thead>
       <th>Ponto Positivo</th>
-      <th>Ação</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
-      <% @positive_topics.each.with_index(1) do |p, i| %>
-        <tr>
-          <td><%= i %>. <%= p.description %></td>
+      <% @positive_topics.each do |p| %>
+        <tr data-id="<%= p.id %>">
+          <td><%= p.description %></td>
           <td>
-            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn ls-ico-pencil' %>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
           </td>
         </tr>
       <% end %>
@@ -81,14 +106,20 @@
   <table class="ls-table ls-table-striped">
     <thead>
       <th>Ponto Negativo</th>
-      <th>Ação</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
       <% @negative_topics.each.with_index(1) do |p, i| %>
         <tr>
-          <td><%= i %>. <%= p.description %></td>
+          <td><%= p.description %></td>
           <td>
-            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <div data-ls-module="dropdown" class="ls-dropdown">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><a href="#">Editar</a></li>
+                <li><%= link_to 'Excluir', [@retrospective, p], method: :delete, data: { confirm: t('confirm') } %></li>
+              </ul>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -113,14 +144,20 @@
   <table class="ls-table ls-table-striped">
     <thead>
       <th>Dúvida</th>
-      <th>Ação</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
       <% @doubts.each.with_index(1) do |d, i| %>
         <tr>
-          <td><%= i %>. <%= d.description %></td>
+          <td><%= d.description %></td>
           <td>
-            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <div data-ls-module="dropdown" class="ls-dropdown">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><a href="#">Editar</a></li>
+                <li><%= link_to 'Excluir', [@retrospective, d], method: :delete, data: { confirm: t('confirm') } %></li>
+              </ul>
+            </div>
           </td>
         </tr>
       <% end %>

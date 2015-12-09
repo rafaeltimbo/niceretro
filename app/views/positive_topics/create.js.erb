@@ -1,0 +1,20 @@
+<% if @positive_topic.errors.any? %>
+  // Error
+<% else %>
+  // Add the positive topic line to table
+  $('#positive-topics-table').find('tbody').append(
+    '<tr data-id="<%= @positive_topic.id %>">' +
+      '<td><%= @positive_topic.description %></td>' +
+      '<td>' +
+        '<%= link_to "", [@retrospective, @positive_topic], class: "ls-btn ls-ico-pencil" %>' +
+        '<%= link_to "", [@retrospective, @positive_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '</td>' +
+    '</tr>'
+  );
+
+  // Init the dropdown module to
+  locastyle.dropdown.init();
+
+  // Remove the input value
+  $('#positive_topic_description').val('');
+<% end %>
