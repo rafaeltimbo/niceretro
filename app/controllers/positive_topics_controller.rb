@@ -13,6 +13,16 @@ class PositiveTopicsController < ApplicationController
     @positive_topic.destroy
   end
 
+  def edit
+    @retrospective = Retrospective.find(@retrospective_id)
+    @positive_topic = PositiveTopic.find(params[:id])
+  end
+
+  def update
+    @positive_topic = PositiveTopic.find(params[:id])
+    @positive_topic.update_attributes(positive_topics_params)
+  end
+
   private
 
   def positive_topics_params

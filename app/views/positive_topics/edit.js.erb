@@ -1,0 +1,21 @@
+var positiveTopicsTable = $('#positive-topics-table');
+var editLine = positiveTopicsTable.find('[data-id="' + <%= @positive_topic.id %> + '"]');
+
+function saveEditedLine() {
+  var editForm = $('#edit_positive_topic_' + <%= @positive_topic.id %>);
+  editForm.find('#positive_topic_description').val($('#positive-topic-edit-description').val());
+  editForm.submit();
+}
+
+editLine.find('.description').html('<input type="text" value="<%= @positive_topic.description %>" class="ls-full-width" id="positive-topic-edit-description" />');
+editLine.find('.ls-group-btn').hide();
+editLine.find('.actions').append('<a class="ls-btn-primary" id="positive-topic-save-edit">Salvar</a>');
+
+$('#positive-topic-save-edit').on('click', saveEditedLine);
+
+positiveTopicsTable.after(
+  '<%= form_for [@retrospective, @positive_topic], remote: true, html: { class: "ls-form ls-display-none" } do |f| %>' +
+    '<%= f.text_field :description %>' +
+    '<%= f.submit t("form.add"), class: "ls-btn-primary" %>' +
+  '<% end %>'
+);
