@@ -1,4 +1,6 @@
 class PositiveTopicsController < ApplicationController
+  include RemoteFormErrorsHelper
+
   before_action :get_retrospective_id
   respond_to :html, :js
 
