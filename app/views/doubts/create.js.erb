@@ -1,0 +1,20 @@
+<% if @doubt.errors.any? %>
+  // Error
+<% else %>
+  // Add the doubt line to table
+  $('#doubts-table').find('tbody').append(
+    '<tr data-id="<%= @doubt.id %>">' +
+      '<td><%= @doubt.description %></td>' +
+      '<td>' +
+        '<%= link_to "", [@retrospective, @doubt], class: "ls-btn ls-ico-pencil" %>' +
+        '<%= link_to "", [@retrospective, @doubt], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '</td>' +
+    '</tr>'
+  );
+
+  // Init the dropdown module to
+  locastyle.dropdown.init();
+
+  // Remove the input value
+  $('#doubt_description').val('');
+<% end %>
