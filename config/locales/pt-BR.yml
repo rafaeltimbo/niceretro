@@ -26,3 +26,8 @@ pt-BR:
     save: 'Salvar'
     cancel: 'Cancelar'
     add: '+ adicionar'
+
+  activerecord:
+    errors:
+      messages:
+        blank: O campo %{attribute} não pode ficar em branco

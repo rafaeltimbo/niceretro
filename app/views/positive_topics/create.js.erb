@@ -1,5 +1,7 @@
 <% if @positive_topic.errors.any? %>
-  // Error
+  if (!$('#positive_topic_description').next().hasClass('ls-help-message')) {
+    $('#new_positive_topic').find('label').append('<%= errors_for(@positive_topic, :description) %>').addClass('ls-error');
+  }
 <% else %>
   // Add the positive topic line to table
   $('#positive-topics-table').find('tbody').append(
@@ -12,9 +14,7 @@
     '</tr>'
   );
 
-  // Init the dropdown module to
-  locastyle.dropdown.init();
-
-  // Remove the input value
+  $('#positive_topic_description').next().remove();
+  $('#new_positive_topic').find('label').removeClass('ls-error');
   $('#positive_topic_description').val('');
 <% end %>
