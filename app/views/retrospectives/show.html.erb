@@ -94,7 +94,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Negativos</h2>
   </header>
-  <%= form_for [@retrospective, @negative_topic], html: { class: 'ls-form ls-form-inline row' } do |f| %>
+  <%= form_for [@retrospective, @negative_topic], remote: true, html: { class: 'ls-form ls-form-inline row' } do |f| %>
     <label class="ls-label col-md-6">
       <%= f.text_field :description %>
     </label>
@@ -103,23 +103,18 @@
     </div>
   <% end %>
 
-  <table class="ls-table ls-table-striped">
+  <table class="ls-table ls-table-striped" id="negative-topics-table">
     <thead>
       <th>Ponto Negativo</th>
       <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
-      <% @negative_topics.each.with_index(1) do |p, i| %>
+      <% @negative_topics.each do |p| %>
         <tr>
           <td><%= p.description %></td>
           <td>
-            <div data-ls-module="dropdown" class="ls-dropdown">
-              <button  class="ls-btn"></button>
-              <ul class="ls-dropdown-nav">
-                <li><a href="#">Editar</a></li>
-                <li><%= link_to 'Excluir', [@retrospective, p], method: :delete, data: { confirm: t('confirm') } %></li>
-              </ul>
-            </div>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn ls-ico-pencil' %>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
           </td>
         </tr>
       <% end %>
