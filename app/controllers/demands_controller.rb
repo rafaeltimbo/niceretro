@@ -1,22 +1,16 @@
 class DemandsController < ApplicationController
   before_action :get_retrospective_id
+  respond_to :html, :js
 
   def create
     @retrospective = Retrospective.find(@retrospective_id)
     @demand = @retrospective.demands.build(demands_params)
-
-    if @demand.save
-      redirect_to retrospective_path(@retrospective_id)
-    end
+    @demand.save
   end
 
   def destroy
     @demand = Demand.find(params[:id])
     @demand.destroy
-
-    if @demand.destroyed?
-      redirect_to retrospective_path(@retrospective_id)
-    end
   end
 
   private

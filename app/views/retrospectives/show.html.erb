@@ -23,7 +23,7 @@
     </div>
   <% end %>
 
-  <table id="demand-table" class="ls-table ls-table-striped">
+  <table class="ls-table ls-table-striped" id="demands-table">
     <thead>
       <th>Ação</th>
       <th>Responsável</th>
@@ -38,17 +38,12 @@
           <td>
             <div data-ls-module="switchButton" class="ls-switch-btn">
               <input type="checkbox">
-              <label class="ls-switch-label" for="teste" name="label-teste" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
+              <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
             </div>
           </td>
           <td>
-            <div data-ls-module="dropdown" class="ls-dropdown">
-              <button  class="ls-btn"></button>
-              <ul class="ls-dropdown-nav">
-                <li><a href="#">Editar</a></li>
-                <li><%= link_to 'Excluir', [@retrospective, d], method: :delete, data: { confirm: t('confirm') }, remote: true %></li>
-              </ul>
-            </div>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn ls-ico-pencil', title: 'Editar' %>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
           </td>
         </tr>
       <% end %>
