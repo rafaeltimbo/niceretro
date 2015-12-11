@@ -33,9 +33,4 @@ editLine.find('.actions').append(
 $('#positive-topic-save-edit').on('click', submitEditedLine);
 $('#positive-topic-cancel-edit').on('click', clearEditMode);
 
-positiveTopicsTable.after(
-  '<%= form_for [@retrospective, @positive_topic], remote: true, html: { class: "ls-form ls-display-none" } do |f| %>' +
-    '<%= f.text_field :description %>' +
-    '<%= f.submit t("form.add"), class: "ls-btn-primary" %>' +
-  '<% end %>'
-);
+positiveTopicsTable.after('<%= j render partial: "shared/forms/description", locals: { object: @positive_topic, classes: "ls-form ls-form-inline row ls-display-none" } %>');

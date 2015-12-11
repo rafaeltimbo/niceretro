@@ -56,14 +56,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Positivos</h2>
   </header>
-  <%= form_for [@retrospective, @positive_topic], remote: true, html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/forms/description', locals: { object: @positive_topic, classes: 'ls-form ls-form-inline row' } %>
 
   <table class="ls-table ls-table-striped" id="positive-topics-table">
     <thead>
@@ -91,14 +84,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Negativos</h2>
   </header>
-  <%= form_for [@retrospective, @negative_topic], remote: true, html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/forms/description', locals: { object: @negative_topic, classes: 'ls-form ls-form-inline row' } %>
 
   <table class="ls-table ls-table-striped" id="negative-topics-table">
     <thead>
@@ -124,14 +110,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Dúvidas</h2>
   </header>
-  <%= form_for [@retrospective, @doubt], remote: true, html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/forms/description', locals: { object: @doubt, classes: 'ls-form ls-form-inline row' } %>
 
   <table class="ls-table ls-table-striped" id="doubts-table">
     <thead>

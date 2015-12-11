@@ -48,22 +48,22 @@ class RetrospectivesController < ApplicationController
   private
 
   def demands_setup
-    @demands = @retrospective.demands
+    @demands = @retrospective.demands.order(:id)
     @demand = Demand.new
   end
 
   def doubts_setup
-    @doubts = @retrospective.doubts
+    @doubts = @retrospective.doubts.order(:id)
     @doubt = Doubt.new
   end
 
   def positive_topics_setup
-    @positive_topics = @retrospective.positive_topics
+    @positive_topics = @retrospective.positive_topics.order(:id)
     @positive_topic = PositiveTopic.new
   end
 
   def negative_topics_setup
-    @negative_topics = @retrospective.negative_topics
+    @negative_topics = @retrospective.negative_topics.order(:id)
     @negative_topic = NegativeTopic.new
   end
 
