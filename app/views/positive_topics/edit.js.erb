@@ -1,17 +1,37 @@
 var positiveTopicsTable = $('#positive-topics-table');
 var editLine = positiveTopicsTable.find('[data-id="' + <%= @positive_topic.id %> + '"]');
 
-function saveEditedLine() {
+function submitEditedLine() {
   var editForm = $('#edit_positive_topic_' + <%= @positive_topic.id %>);
   editForm.find('#positive_topic_description').val($('#positive-topic-edit-description').val());
   editForm.submit();
 }
 
+function clearEditMode() {
+  var descriptionField = $('#positive-topic-edit-description');
+
+  positiveTopicsTable.next('form').remove();
+  descriptionField.closest('tr').find('.ls-group-btn').show();
+  descriptionField.closest('td').html(descriptionField.val());
+  $('#editActions').remove();
+}
+
+// Validate if exist another line in edit mode
+if ($('#positive-topic-edit-description').length) {
+  clearEditMode();
+}
+
 editLine.find('.description').html('<input type="text" value="<%= @positive_topic.description %>" class="ls-full-width" id="positive-topic-edit-description" />');
 editLine.find('.ls-group-btn').hide();
-editLine.find('.actions').append('<a class="ls-btn-primary" id="positive-topic-save-edit">Salvar</a>');
+editLine.find('.actions').append(
+  '<div id="editActions">' +
+    '<a class="ls-btn-primary" id="positive-topic-save-edit">Salvar</a>' +
+    '<a class="ls-btn" id="positive-topic-cancel-edit">Cancelar</a>' +
+  '</div>'
+);
 
-$('#positive-topic-save-edit').on('click', saveEditedLine);
+$('#positive-topic-save-edit').on('click', submitEditedLine);
+$('#positive-topic-cancel-edit').on('click', clearEditMode);
 
 positiveTopicsTable.after(
   '<%= form_for [@retrospective, @positive_topic], remote: true, html: { class: "ls-form ls-display-none" } do |f| %>' +

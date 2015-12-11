@@ -30,4 +30,4 @@ pt-BR:
   activerecord:
     errors:
       messages:
-        blank: O campo %{attribute} não pode ficar em branco
+        blank: Este campo não pode ficar em branco
