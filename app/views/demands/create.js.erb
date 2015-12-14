@@ -1,0 +1,28 @@
+<% if @demand.errors.any? %>
+  // Error
+<% else %>
+  // Add the demand line to table
+  $('#demands-table').find('tbody').append(
+    '<tr data-id="<%= @demand.id %>">' +
+      '<td><%= @demand.description %></td>' +
+      '<td><%= @demand.user %></td>' +
+      '<td>' +
+        '<div data-ls-module="switchButton" class="ls-switch-btn">' +
+          '<input type="checkbox">' +
+          '<label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>' +
+        '</div>' +
+      '</td>' +
+      '<td>' +
+        '<%= link_to "", [@retrospective, @demand], class: "ls-btn ls-ico-pencil" %>' +
+        '<%= link_to "", [@retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '</td>' +
+    '</tr>'
+  );
+
+  // Init the swicth module
+  locastyle.switchButton.init();
+
+  // Remove the input value
+  $('#demand_description').val('');
+  $('#demand_user').val('');
+<% end %>

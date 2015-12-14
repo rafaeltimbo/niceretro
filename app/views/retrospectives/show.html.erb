@@ -5,58 +5,46 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Ações</h2>
   </header>
-  <%= form_for [@retrospective, @action], html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
+  <%= form_for [@retrospective, @demand], remote: true, html: { class: 'ls-form ls-form-horizontal' } do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+        <label class="ls-label ls-no-margin-bottom">
+          <b class="ls-label-text">Descrição</b>
+          <%= f.text_field :description %>
+        </label>
+      </div>
+      <div class="col-md-2">
+        <label class="ls-label ls-no-margin-bottom">
+          <b class="ls-label-text">Responsável</b>
+          <%= f.text_field :user %>
+        </label>
+      </div>
       <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
     </div>
   <% end %>
 
-  <table class="ls-table ls-table-striped">
+  <table class="ls-table ls-table-striped" id="demands-table">
     <thead>
       <th>Ação</th>
-      <th>Ação</th>
+      <th>Responsável</th>
+      <th>Status</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
-      <% @actions.each.with_index(1) do |a, i| %>
-        <tr>
-          <td><%= i %>. <%= a.description %></td>
+      <% @demands.each do |d| %>
+        <tr data-id="<%= d.id %>">
+          <td><%= d.description %></td>
+          <td><%= d.user %></td>
           <td>
-            <%= link_to '', [@retrospective, a], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <div data-ls-module="switchButton" class="ls-switch-btn">
+              <input type="checkbox">
+              <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
+              <%= link_to '', update_status_retrospective_demand_path(@retrospective.id, d.id), remote: true, class: 'hidden' %>
+            </div>
           </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<!-- Doubts -->
-<div class="ls-box ls-board-box">
-  <header class="ls-info-header">
-    <h2 class="ls-title-3">Dúvidas</h2>
-  </header>
-  <%= form_for [@retrospective, @doubt], html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
-    </div>
-  <% end %>
-
-  <table class="ls-table ls-table-striped">
-    <thead>
-      <th>Dúvida</th>
-      <th>Ação</th>
-    </thead>
-    <tbody>
-      <% @doubts.each.with_index(1) do |d, i| %>
-        <tr>
-          <td><%= i %>. <%= d.description %></td>
           <td>
-            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn ls-ico-pencil', title: 'Editar' %>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
           </td>
         </tr>
       <% end %>
@@ -69,26 +57,22 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Positivos</h2>
   </header>
-  <%= form_for [@retrospective, @positive_topic], html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/forms/description', locals: { object: @positive_topic, classes: 'ls-form ls-form-inline row' } %>
 
-  <table class="ls-table ls-table-striped">
+  <table class="ls-table ls-table-striped" id="positive-topics-table">
     <thead>
       <th>Ponto Positivo</th>
-      <th>Ação</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
-      <% @positive_topics.each.with_index(1) do |p, i| %>
-        <tr>
-          <td><%= i %>. <%= p.description %></td>
-          <td>
-            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+      <% @positive_topics.each do |p| %>
+        <tr data-id="<%= p.id %>">
+          <td class="description"><%= p.description %></td>
+          <td class="actions">
+            <div class="ls-group-btn">
+              <%= link_to '', edit_retrospective_positive_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
+              <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -101,26 +85,46 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Negativos</h2>
   </header>
-  <%= form_for [@retrospective, @negative_topic], html: { class: 'ls-form ls-form-inline row' } do |f| %>
-    <label class="ls-label col-md-6">
-      <%= f.text_field :description %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/forms/description', locals: { object: @negative_topic, classes: 'ls-form ls-form-inline row' } %>
 
-  <table class="ls-table ls-table-striped">
+  <table class="ls-table ls-table-striped" id="negative-topics-table">
     <thead>
       <th>Ponto Negativo</th>
-      <th>Ação</th>
+      <th class="ls-width-250">Ações</th>
     </thead>
     <tbody>
-      <% @negative_topics.each.with_index(1) do |p, i| %>
-        <tr>
-          <td><%= i %>. <%= p.description %></td>
+      <% @negative_topics.each do |p| %>
+        <tr data-id="<%= p.id %>">
+          <td><%= p.description %></td>
           <td>
-            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete %>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn ls-ico-pencil' %>
+            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Doubts -->
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3">Dúvidas</h2>
+  </header>
+  <%= render partial: 'shared/forms/description', locals: { object: @doubt, classes: 'ls-form ls-form-inline row' } %>
+
+  <table class="ls-table ls-table-striped" id="doubts-table">
+    <thead>
+      <th>Dúvida</th>
+      <th class="ls-width-250">Ações</th>
+    </thead>
+    <tbody>
+      <% @doubts.each do |d| %>
+        <tr data-id="<%= d.id %>">
+          <td><%= d.description %></td>
+          <td>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn ls-ico-pencil' %>
+            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
           </td>
         </tr>
       <% end %>

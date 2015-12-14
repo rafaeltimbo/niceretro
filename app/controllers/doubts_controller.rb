@@ -1,22 +1,16 @@
 class DoubtsController < ApplicationController
   before_action :get_retrospective_id
+  respond_to :html, :js
 
   def create
     @retrospective = Retrospective.find(@retrospective_id)
     @doubt = @retrospective.doubts.build(doubts_params)
-
-    if @doubt.save
-      redirect_to retrospective_path(@retrospective_id)
-    end
+    @doubt.save
   end
 
   def destroy
     @doubt = Doubt.find(params[:id])
     @doubt.destroy
-
-    if @doubt.destroyed?
-      redirect_to retrospective_path(@retrospective_id)
-    end
   end
 
   private

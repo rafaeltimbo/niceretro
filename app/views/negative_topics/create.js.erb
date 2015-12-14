@@ -1,0 +1,20 @@
+<% if @negative_topic.errors.any? %>
+  // Error
+<% else %>
+  // Add the negative topic line to table
+  $('#negative-topics-table').find('tbody').append(
+    '<tr data-id="<%= @negative_topic.id %>">' +
+      '<td><%= @negative_topic.description %></td>' +
+      '<td>' +
+        '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn ls-ico-pencil" %>' +
+        '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '</td>' +
+    '</tr>'
+  );
+
+  // Init the dropdown module to
+  locastyle.dropdown.init();
+
+  // Remove the input value
+  $('#negative_topic_description').val('');
+<% end %>

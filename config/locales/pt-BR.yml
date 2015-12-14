@@ -26,3 +26,8 @@ pt-BR:
     save: 'Salvar'
     cancel: 'Cancelar'
     add: '+ adicionar'
+
+  activerecord:
+    errors:
+      messages:
+        blank: Este campo não pode ficar em branco
