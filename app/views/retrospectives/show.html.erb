@@ -37,10 +37,8 @@
           <td><%= d.user %></td>
           <td>
             <div data-ls-module="switchButton" class="ls-switch-btn">
-              <%= link_to update_status_retrospective_demand_path(@retrospective.id, d.id), remote: true do %>
-                <input type="checkbox">
-                <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
-              <% end %> 
+              <input type="checkbox">
+              <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
             </div>
           </td>
           <td>

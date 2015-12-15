@@ -13,10 +13,6 @@ class DemandsController < ApplicationController
     @demand.destroy
   end
 
-  def update_status
-    binding.pry
-  end
-
   private
 
   def demands_params
