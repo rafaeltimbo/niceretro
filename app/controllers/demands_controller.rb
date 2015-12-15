@@ -14,7 +14,6 @@ class DemandsController < ApplicationController
   end
 
   def update_status
-    # binding.pry
     @demand = Demand.find(params[:id])
     @demand.status = !@demand.status
     @demand.save
