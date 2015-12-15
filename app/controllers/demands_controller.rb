@@ -13,6 +13,12 @@ class DemandsController < ApplicationController
     @demand.destroy
   end
 
+  def update_status
+    @demand = Demand.find(params[:id])
+    @demand.status = !@demand.status
+    @demand.save
+  end
+
   private
 
   def demands_params
