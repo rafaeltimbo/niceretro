@@ -11,6 +11,7 @@
           '<input type="checkbox">' +
           '<label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>' +
         '</div>' +
+        '<%= link_to '', update_status_retrospective_demand_path(@retrospective.id, @demand.id), remote: true, class: "ls-display-none" %>' +
       '</td>' +
       '<td>' +
         '<%= link_to "", [@retrospective, @demand], class: "ls-btn ls-ico-pencil" %>' +

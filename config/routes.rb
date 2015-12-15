@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get '/retrospectives' => redirect('/')
 
   resources :retrospectives do
-    resources :demands
+    resources :demands do
+      member do
+        get 'update_status'
+      end
+    end
     resources :doubts
     resources :positive_topics
     resources :negative_topics
