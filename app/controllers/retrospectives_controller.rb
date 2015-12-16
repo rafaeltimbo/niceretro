@@ -39,30 +39,30 @@ class RetrospectivesController < ApplicationController
 
   def show
     @retrospective = Retrospective.find(params[:id])
-    demands_setup
-    doubts_setup
-    positive_topics_setup
-    negative_topics_setup
+    demands
+    doubts
+    positive_topics
+    negative_topics
   end
 
   private
 
-  def demands_setup
+  def demands
     @demands = @retrospective.demands.order(:id)
     @demand = Demand.new
   end
 
-  def doubts_setup
+  def doubts
     @doubts = @retrospective.doubts.order(:id)
     @doubt = Doubt.new
   end
 
-  def positive_topics_setup
+  def positive_topics
     @positive_topics = @retrospective.positive_topics.order(:id)
     @positive_topic = PositiveTopic.new
   end
 
-  def negative_topics_setup
+  def negative_topics
     @negative_topics = @retrospective.negative_topics.order(:id)
     @negative_topic = NegativeTopic.new
   end
