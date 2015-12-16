@@ -4,14 +4,16 @@ Rails.application.routes.draw do
   get '/retrospectives' => redirect('/')
 
   resources :retrospectives do
-    resources :demands do
-      member do
-        get 'update_status'
-      end
-    end
+    resources :demands
     resources :doubts
     resources :positive_topics
     resources :negative_topics
+  end
+
+  resources :demands do
+    member do
+      get 'update_status'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
