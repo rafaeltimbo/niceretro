@@ -1,0 +1,36 @@
+var negativeTopicsTable = $('#negative-topics-table');
+var editLine = negativeTopicsTable.find('[data-id="' + <%= @negative_topic.id %> + '"]');
+
+function submitEditedLine() {
+  var editForm = $('#edit_negative_topic_' + <%= @negative_topic.id %>);
+  editForm.find('#negative_topic_description').val($('#negative-topic-edit-description').val());
+  editForm.submit();
+}
+
+function clearEditMode() {
+  var descriptionField = $('#negative-topic-edit-description');
+
+  negativeTopicsTable.next('form').remove();
+  descriptionField.closest('tr').find('.ls-group-btn').show();
+  descriptionField.closest('td').html(descriptionField.val());
+  $('#editActions').remove();
+}
+
+// Validate if exist another line in edit mode
+if ($('#negative-topic-edit-description').length) {
+  clearEditMode();
+}
+
+editLine.find('.description').html('<input type="text" value="<%= @negative_topic.description %>" class="ls-full-width" id="negative-topic-edit-description" />');
+editLine.find('.ls-group-btn').hide();
+editLine.find('.actions').append(
+  '<div id="editActions">' +
+    '<a class="ls-btn-primary" id="negative-topic-save-edit">Salvar</a>' +
+    '<a class="ls-btn" id="negative-topic-cancel-edit">Cancelar</a>' +
+  '</div>'
+);
+
+$('#negative-topic-save-edit').on('click', submitEditedLine);
+$('#negative-topic-cancel-edit').on('click', clearEditMode);
+
+negativeTopicsTable.after('<%= j render partial: "shared/forms/description", locals: { object: @negative_topic, classes: "ls-form ls-form-inline row ls-display-none" } %>');

@@ -95,10 +95,12 @@
     <tbody>
       <% @negative_topics.each do |p| %>
         <tr data-id="<%= p.id %>">
-          <td><%= p.description %></td>
-          <td>
-            <%= link_to '', [@retrospective, p], class: 'ls-btn ls-ico-pencil' %>
-            <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+          <td class="description"><%= p.description %></td>
+          <td class="actions">
+            <div class="ls-group-btn">
+              <%= link_to '', edit_retrospective_negative_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
+              <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+            </div>
           </td>
         </tr>
       <% end %>

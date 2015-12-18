@@ -1,7 +1,7 @@
 class PositiveTopicsController < ApplicationController
   include RemoteFormErrorsHelper
 
-  before_action :get_retrospective_id
+  before_action :retrospective_id
   respond_to :html, :js
 
   def create
@@ -31,7 +31,7 @@ class PositiveTopicsController < ApplicationController
     params.require(:positive_topic).permit(:description)
   end
 
-  def get_retrospective_id
+  def retrospective_id
     @retrospective_id = params[:retrospective_id]
   end
 end
