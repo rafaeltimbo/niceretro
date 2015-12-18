@@ -123,10 +123,12 @@
     <tbody>
       <% @doubts.each do |d| %>
         <tr data-id="<%= d.id %>">
-          <td><%= d.description %></td>
-          <td>
-            <%= link_to '', [@retrospective, d], class: 'ls-btn ls-ico-pencil' %>
-            <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+          <td class="description"><%= d.description %></td>
+          <td class="actions">
+            <div class="ls-group-btn">
+              <%= link_to '', edit_retrospective_doubt_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
+              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+            </div>
           </td>
         </tr>
       <% end %>

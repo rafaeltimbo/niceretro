@@ -1,0 +1,36 @@
+var doubtsTable = $('#doubts-table');
+var editLine = doubtsTable.find('[data-id="' + <%= @doubt.id %> + '"]');
+
+function submitEditedLine() {
+  var editForm = $('#edit_doubt_' + <%= @doubt.id %>);
+  editForm.find('#doubt_description').val($('#doubt-edit-description').val());
+  editForm.submit();
+}
+
+function clearEditMode() {
+  var descriptionField = $('#doubt-edit-description');
+
+  doubtsTable.next('form').remove();
+  descriptionField.closest('tr').find('.ls-group-btn').show();
+  descriptionField.closest('td').html(descriptionField.val());
+  $('#editActions').remove();
+}
+
+// Validate if exist another line in edit mode
+if ($('#doubt-edit-description').length) {
+  clearEditMode();
+}
+
+editLine.find('.description').html('<input type="text" value="<%= @doubt.description %>" class="ls-full-width" id="doubt-edit-description" />');
+editLine.find('.ls-group-btn').hide();
+editLine.find('.actions').append(
+  '<div id="editActions">' +
+    '<a class="ls-btn-primary" id="doubt-save-edit">Salvar</a>' +
+    '<a class="ls-btn" id="doubt-cancel-edit">Cancelar</a>' +
+  '</div>'
+);
+
+$('#doubt-save-edit').on('click', submitEditedLine);
+$('#doubt-cancel-edit').on('click', clearEditMode);
+
+doubtsTable.after('<%= j render partial: "shared/forms/description", locals: { object: @doubt, classes: "ls-form ls-form-inline row ls-display-none" } %>');

@@ -1,0 +1,8 @@
+var doubtsTable = $('#doubts-table');
+var editLine = doubtsTable.find('[data-id="' + <%= @doubt.id %> + '"]');
+
+doubtsTable.next('form').remove();
+
+editLine.find('.description').html('<%= @doubt.description %>');
+editLine.find('.ls-group-btn').show();
+$('#editActions').remove();

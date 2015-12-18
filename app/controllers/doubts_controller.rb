@@ -1,5 +1,5 @@
 class DoubtsController < ApplicationController
-  before_action :get_retrospective_id
+  before_action :retrospective_id
   respond_to :html, :js
 
   def create
@@ -13,13 +13,23 @@ class DoubtsController < ApplicationController
     @doubt.destroy
   end
 
+  def edit
+    @retrospective = Retrospective.find(@retrospective_id)
+    @doubt = Doubt.find(params[:id])
+  end
+
+  def update
+    @doubt = Doubt.find(params[:id])
+    @doubt.update_attributes(doubts_params)
+  end
+
   private
 
   def doubts_params
     params.require(:doubt).permit(:description)
   end
 
-  def get_retrospective_id
+  def retrospective_id
     @retrospective_id = params[:retrospective_id]
   end
 end
