@@ -8,7 +8,7 @@
     <div class="ls-list">
       <header class="ls-list-header">
         <div class="ls-list-title col-md-9">
-          <a href="#"><%= @next_retrospective.title %></a>
+          <%= link_to @next_retrospective.title, retrospective_path(@next_retrospective) %>
           <small><%= t('table.date') %>: <%= l @next_retrospective.date.to_date, format: :default %> - <%= l @next_retrospective.schedule, format: :small %></small>
         </div>
         <div class="col-md-3 ls-txt-right">
@@ -35,10 +35,10 @@
       <tbody>
         <% @retrospectives.each do |r| %>
           <tr>
-            <td><a href="#"><%= r.title %></a></td>
-            <td><a href="#"><%= l r.date.to_date, format: :default %></a></td>
-            <td><a href="#"><%= l r.schedule, format: :small %></a></td>
-            <td><a href="#"><%= t('table.room') %> <%= r.room %></a></td>
+            <td><%= r.title %></td>
+            <td><%= l r.date.to_date, format: :default %></td>
+            <td><%= l r.schedule, format: :small %></td>
+            <td><%= t('table.room') %> <%= r.room %></td>
             <td>
               <%= link_to t('button.view'), retrospective_path(r), class: 'ls-btn-primary' %>
               <%= link_to t('button.edit'), edit_retrospective_path(r.id), class: 'ls-btn' %>
