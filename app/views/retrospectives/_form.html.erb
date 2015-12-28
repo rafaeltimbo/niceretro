@@ -4,16 +4,29 @@
       <b class="ls-label-text"><%= t('form.title') %>:</b>
       <%= f.text_field :title %>
     </label>
-    <label class="ls-label col-md-12">
-      <b class="ls-label-text"><%= t('form.date') %>:</b>
-      <%= f.date_select :date, html_options = { class: 'ls-select' } %>
-    </label>
-    <label class="ls-label col-md-12">
-      <b class="ls-label-text"><%= t('form.room') %>:</b>
-      <%= f.number_field :room %>
-    </label>
-    <div class="ls-actions-btn">
-      <%= f.submit t('form.save'), class: 'ls-btn-primary' %>
+    <div class="col-md-4">
+      <label class="ls-label">
+        <b class="ls-label-text"><%= t('form.room') %>:</b>
+        <%= f.number_field :room %>
+      </label>
+    </div>
+    <div class="col-md-4">
+      <label class="ls-label">
+        <b class="ls-label-text"><%= t('form.date') %>:</b>
+        <div class="ls-prefix-group">
+          <%= f.text_field :date, class: 'datepicker', placeholder: 'dd/mm/aaaa', id: 'retrospective-date' %>
+          <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#retrospective-date" href="#"></a>
+        </div>
+      </label>
+    </div>
+    <div class="col-md-4">
+      <label class="ls-label">
+        <b class="ls-label-text"><%= t('form.schedule') %>:</b>
+        <%= f.time_field :schedule %>
+      </label>
+    </div>
+    <div class="col-md-12">
+      <%= f.submit t('form.save'), class: 'ls-btn-primary ls-no-margin-left' %>
     </div>
   <% end %>
 </fieldset>

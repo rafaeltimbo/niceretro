@@ -1,19 +1,27 @@
 pt-BR:
   initial_page: 'Página Inicial'
+  my_retrospectives: 'Minhas Retrospectivas'
+  next_retrospective: 'Próxima Retrospectiva'
+  retrospectives_historic: 'Histórico de Retrospectivas'
   retrospectives_list: 'Lista de Restrospectivas'
   confirm: Você tem certeza que deseja excluir?
   menu:
     initial_page: 'Página Inicial'
+    my_retrospectives: 'Minhas Retrospectivas'
     create_retrospective: 'Criar Retrospectiva'
   table:
     title: 'Título'
     date: 'Data'
     room: 'Sala'
     actions: 'Ações'
+    products: 'Produtos'
+    pending_actions: 'Ações Pendentes'
+    schedule: 'Horário'
   button:
     delete: 'Deletar'
     edit: 'Editar'
     view: 'Visualizar'
+    filter: 'Filtrar'
   new:
     page_title: 'Nova Retrospectiva'
   edit:
@@ -26,6 +34,8 @@ pt-BR:
     save: 'Salvar'
     cancel: 'Cancelar'
     add: '+ adicionar'
+    period: 'Período'
+    schedule: 'Horário'
 
   activerecord:
     errors:

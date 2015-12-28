@@ -1,32 +1,69 @@
-<h1 class="ls-title-intro ls-ico-home"><%= t('initial_page') %></h1>
+<h1 class="ls-title-intro ls-ico-home"><%= t('my_retrospectives') %></h1>
 
-<div class="ls-box ls-board-box">
-  <header class="ls-info-header">
-    <h2 class="ls-title-3"><%= t('retrospectives_list') %></h2>
-  </header>
-  <table class="ls-table">
-    <thead>
-      <tr>
-        <th><%= t('table.title') %></th>
-        <th><%= t('table.date') %></th>
-        <th><%= t('table.room') %></th>
-        <th><%= t('table.actions') %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @retrospectives.each do |r| %>
+<% if @next_retrospective %>
+  <div class="ls-box ls-board-box">
+    <header class="ls-info-header">
+      <h2 class="ls-title-3"><%= t('next_retrospective') %></h2>
+    </header>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-9">
+          <a href="#"><%= @next_retrospective.title %></a>
+          <small><%= t('table.date') %>: <%= l @next_retrospective.date.to_date, format: :default %> - <%= l @next_retrospective.schedule, format: :small %></small>
+        </div>
+        <div class="col-md-3 ls-txt-right">
+          <%= link_to t('button.view'), retrospective_path(@next_retrospective), class: 'ls-btn-primary' %>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="ls-box ls-board-box">
+    <header class="ls-info-header">
+      <h2 class="ls-title-3"><%= t('retrospectives_historic') %></h2>
+    </header>
+    <table class="ls-table">
+      <thead>
         <tr>
-          <td><a href="#"><%= r.title %></a></td>
-          <td><a href="#"><%= l r.date.to_date, format: :default %></a></td>
-          <td><a href="#"><%= t('table.room') %> <%= r.room %></a></td>
-          <td>
-            <%= link_to t('button.view'), retrospective_path(r), class: 'ls-btn-primary' %>
-            <%= link_to t('button.edit'), edit_retrospective_path(r.id), class: 'ls-btn' %>
-            <%= link_to t('button.delete'), r, class: 'ls-btn-danger', method: :delete, data: { confirm: t('confirm') } %>
-          </td>
+          <th><%= t('table.title') %></th>
+          <th><%= t('table.date') %></th>
+          <th><%= t('table.schedule') %></th>
+          <th><%= t('table.room') %></th>
+          <th><%= t('table.actions') %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
+      </thead>
+      <tbody>
+        <% @retrospectives.each do |r| %>
+          <tr>
+            <td><a href="#"><%= r.title %></a></td>
+            <td><a href="#"><%= l r.date.to_date, format: :default %></a></td>
+            <td><a href="#"><%= l r.schedule, format: :small %></a></td>
+            <td><a href="#"><%= t('table.room') %> <%= r.room %></a></td>
+            <td>
+              <%= link_to t('button.view'), retrospective_path(r), class: 'ls-btn-primary' %>
+              <%= link_to t('button.edit'), edit_retrospective_path(r.id), class: 'ls-btn' %>
+              <%= link_to t('button.delete'), r, class: 'ls-btn-danger', method: :delete, data: { confirm: t('confirm') } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="ls-box ls-board-box">
+    <header class="ls-info-header">
+      <h2 class="ls-title-3"><%= t('next_retrospective') %></h2>
+    </header>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-9">
+          <%= link_to 'Você ainda não possui nenhuma retrospectiva criada.', new_retrospective_path, title: t('menu.create_retrospective') %>
+          <small>Clique no botão ao lado para criar sua primeira retrospectivs.</small>
+        </div>
+        <div class="col-md-3 ls-txt-right">
+          <%= link_to t('menu.create_retrospective'), new_retrospective_path, class: 'ls-btn-primary', title: t('menu.create_retrospective') %>
+        </div>
+      </header>
+    </div>
+  </div>
+<% end %>

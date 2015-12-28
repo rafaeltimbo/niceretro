@@ -1,6 +1,7 @@
 class RetrospectivesController < ApplicationController
   def index
-    @retrospectives = Retrospective.all
+    @retrospectives = Retrospective.all.order(date: :desc)
+    @next_retrospective = Retrospective.next
   end
 
   def new
@@ -68,6 +69,6 @@ class RetrospectivesController < ApplicationController
   end
 
   def retrospectives_params
-    params.require(:retrospective).permit(:title, :date, :room)
+    params.require(:retrospective).permit(:title, :date, :room, :schedule)
   end
 end
