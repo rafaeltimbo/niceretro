@@ -14,7 +14,7 @@
       <label class="ls-label">
         <b class="ls-label-text"><%= t('form.date') %>:</b>
         <div class="ls-prefix-group">
-          <%= f.text_field :date, class: 'datepicker', placeholder: 'dd/mm/aaaa', id: 'retrospective-date' %>
+          <%= f.text_field :date, class: 'datepicker', placeholder: 'dd/mm/aaaa', id: 'retrospective-date', value: (@retrospective.date.strftime(t('date.formats.default')) if @retrospective.date) %>
           <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#retrospective-date" href="#"></a>
         </div>
       </label>
