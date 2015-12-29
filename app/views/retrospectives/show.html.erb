@@ -52,6 +52,41 @@
   </table>
 </div>
 
+<!-- Pending Actions -->
+<% if @latest_demands.count > 0 %>
+  <div class="ls-box ls-board-box">
+    <header class="ls-info-header">
+      <h2 class="ls-title-3">Ações Pendentes</h2>
+    </header>
+    <table class="ls-table ls-table-striped" id="pending-demands-table">
+      <thead>
+        <th>Ação</th>
+        <th>Responsável</th>
+        <th>Status</th>
+        <th class="ls-width-250">Ações</th>
+      </thead>
+      <tbody>
+        <% @latest_demands.each do |d| %>
+          <tr data-id="<%= d.id %>">
+            <td><%= d.description %></td>
+            <td><%= d.user %></td>
+            <td>
+              <div data-ls-module="switchButton" class="ls-switch-btn">
+                <%= check_box_tag '', '1',  d.status %>
+                <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
+              </div>
+            <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+            </td>
+            <td>
+              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
 <!-- Positive Topics -->
 <div class="ls-box ls-board-box">
   <header class="ls-info-header">
