@@ -1,1 +1,3 @@
 bundle exec rake db:migrate RAILS_ENV=production
+ln -s /var/lib/nginx/database.yml /var/www/webroot/ROOT/config/database.yml
+ln -s /var/lib/nginx/secrets.yml /var/www/webroot/ROOT/config/secrets.yml
