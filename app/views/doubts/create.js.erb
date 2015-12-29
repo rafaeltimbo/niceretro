@@ -4,10 +4,12 @@
   // Add the doubt line to table
   $('#doubts-table').find('tbody').append(
     '<tr data-id="<%= @doubt.id %>">' +
-      '<td><%= @doubt.description %></td>' +
-      '<td>' +
-        '<%= link_to "", [@retrospective, @doubt], class: "ls-btn ls-ico-pencil" %>' +
-        '<%= link_to "", [@retrospective, @doubt], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '<td class="description"><%= @doubt.description %></td>' +
+      '<td class="actions">' +
+        '<div class="ls-group-btn">' +
+          '<%= link_to "", edit_retrospective_doubt_path(@retrospective.id, @doubt.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
+          '<%= link_to "", [@retrospective, @doubt], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+        '</div>' +
       '</td>' +
     '</tr>'
   );

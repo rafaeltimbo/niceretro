@@ -4,10 +4,12 @@
   // Add the negative topic line to table
   $('#negative-topics-table').find('tbody').append(
     '<tr data-id="<%= @negative_topic.id %>">' +
-      '<td><%= @negative_topic.description %></td>' +
-      '<td>' +
-        '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn ls-ico-pencil" %>' +
-        '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '<td class="description"><%= @negative_topic.description %></td>' +
+      '<td class="actions">' +
+        '<div class="ls-group-btn">' +
+          '<%= link_to "", edit_retrospective_negative_topic_path(@retrospective.id, @negative_topic.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
+          '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+        '</div>' +
       '</td>' +
     '</tr>'
   );
