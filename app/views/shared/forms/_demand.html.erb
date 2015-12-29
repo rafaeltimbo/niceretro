@@ -1,0 +1,17 @@
+<%= form_for [@retrospective, object], remote: true, html: { class: classes } do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="ls-label ls-no-margin-bottom">
+        <b class="ls-label-text">Descrição</b>
+        <%= f.text_field :description %>
+      </label>
+    </div>
+    <div class="col-md-2">
+      <label class="ls-label ls-no-margin-bottom">
+        <b class="ls-label-text">Responsável</b>
+        <%= f.text_field :user %>
+      </label>
+    </div>
+    <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
+  </div>
+<% end %>

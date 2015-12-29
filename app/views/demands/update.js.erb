@@ -1,0 +1,9 @@
+var demandsTable = $('#demands-table');
+var editLine = demandsTable.find('[data-id="' + <%= @demand.id %> + '"]');
+
+demandsTable.next('form').remove();
+
+editLine.find('.description').html('<%= @demand.description %>');
+editLine.find('.user').html('<%= @demand.user %>');
+editLine.find('.ls-group-btn').show();
+$('#editActions').remove();

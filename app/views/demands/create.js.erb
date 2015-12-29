@@ -4,8 +4,8 @@
   // Add the demand line to table
   $('#demands-table').find('tbody').append(
     '<tr data-id="<%= @demand.id %>">' +
-      '<td><%= @demand.description %></td>' +
-      '<td><%= @demand.user %></td>' +
+      '<td class="description"><%= @demand.description %></td>' +
+      '<td class="user"><%= @demand.user %></td>' +
       '<td>' +
         '<div data-ls-module="switchButton" class="ls-switch-btn">' +
           '<input type="checkbox">' +
@@ -13,9 +13,11 @@
         '</div>' +
         '<%= link_to '', update_status_demand_path(@demand.id), remote: true, class: "ls-display-none" %>' +
       '</td>' +
-      '<td>' +
-        '<%= link_to "", [@retrospective, @demand], class: "ls-btn ls-ico-pencil" %>' +
-        '<%= link_to "", [@retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+      '<td class="actions">' +
+        '<div class="ls-group-btn">' +
+          '<%= link_to "", edit_retrospective_demand_path(@retrospective.id, @demand.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
+          '<%= link_to "", [@retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+        '</div>' +
       '</td>' +
     '</tr>'
   );

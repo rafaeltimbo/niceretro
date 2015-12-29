@@ -1,0 +1,42 @@
+var demandsTable = $('#demands-table');
+var editLine = demandsTable.find('[data-id="' + <%= @demand.id %> + '"]');
+
+function submitEditedLine() {
+  var editForm = $('#edit_demand_' + <%= @demand.id %>);
+  editForm.find('#demand_description').val($('#demand-edit-description').val());
+  editForm.find('#demand_user').val($('#demand-edit-user').val());
+  editForm.submit();
+}
+
+function clearEditMode() {
+  var descriptionField = $('#demand-edit-description');
+  var userField = $('#demand-edit-user');
+
+  demandsTable.next('form').remove();
+
+  descriptionField.closest('tr').find('.ls-group-btn').show();
+  descriptionField.closest('td').html(descriptionField.val());
+  userField.closest('td').html(userField.val());
+
+  $('#editActions').remove();
+}
+
+// Validate if exist another line in edit mode
+if ($('#demand-edit-description').length) {
+  clearEditMode();
+}
+
+editLine.find('.description').html('<input type="text" value="<%= @demand.description %>" class="ls-full-width" id="demand-edit-description" />');
+editLine.find('.user').html('<input type="text" value="<%= @demand.user %>" class="ls-full-width" id="demand-edit-user" />');
+editLine.find('.ls-group-btn').hide();
+editLine.find('.actions').append(
+  '<div id="editActions">' +
+    '<a class="ls-btn-primary" id="demand-save-edit">Salvar</a>' +
+    '<a class="ls-btn" id="demand-cancel-edit">Cancelar</a>' +
+  '</div>'
+);
+
+$('#demand-save-edit').on('click', submitEditedLine);
+$('#demand-cancel-edit').on('click', clearEditMode);
+
+demandsTable.after('<%= j render partial: "shared/forms/demand", locals: { object: @demand, classes: "ls-form ls-form-horizontal ls-display-none" } %>');
