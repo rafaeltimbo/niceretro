@@ -1,21 +1,21 @@
 <div class="ls-box ls-board-box col-lg-6 col-md-8">
   <fieldset>
-    <%= form_for @retrospective, html: { class: 'ls-form row' } do |f| %>
+    <%= form_for @retrospective, html: { class: 'ls-form row validate' } do |f| %>
       <label class="ls-label col-md-12">
         <b class="ls-label-text"><%= t('form.title') %>:</b>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, required: true %>
       </label>
       <div class="col-md-4">
         <label class="ls-label">
           <b class="ls-label-text"><%= t('form.room') %>:</b>
-          <%= f.number_field :room %>
+          <%= f.number_field :room, required: true %>
         </label>
       </div>
       <div class="col-md-4">
         <label class="ls-label">
           <b class="ls-label-text"><%= t('form.date') %>:</b>
           <div class="ls-prefix-group">
-            <%= f.text_field :date, class: 'datepicker', placeholder: 'dd/mm/aaaa', id: 'retrospective-date', value: (@retrospective.date.strftime(t('date.formats.default')) if @retrospective.date) %>
+            <%= f.text_field :date, class: 'datepicker', placeholder: 'dd/mm/aaaa', id: 'retrospective-date', value: (@retrospective.date.strftime(t('date.formats.default')) if @retrospective.date), required: true %>
             <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#retrospective-date" href="#"></a>
           </div>
         </label>
@@ -23,7 +23,7 @@
       <div class="col-md-4">
         <label class="ls-label">
           <b class="ls-label-text"><%= t('form.schedule') %>:</b>
-          <%= f.time_field :schedule %>
+          <%= f.time_field :schedule, required: true %>
         </label>
       </div>
       <div class="col-md-12">

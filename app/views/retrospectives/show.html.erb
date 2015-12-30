@@ -5,7 +5,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Ações</h2>
   </header>
-  <%= render partial: 'shared/forms/demand', locals: { object: @demand, classes: 'ls-form ls-form-horizontal' } %>
+  <%= render partial: 'shared/forms/demand', locals: { object: @demand, classes: 'ls-form ls-form-horizontal validate' } %>
 
   <table class="ls-table ls-table-striped" id="demands-table">
     <thead>
@@ -78,7 +78,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Positivos</h2>
   </header>
-  <%= render partial: 'shared/forms/description', locals: { object: @positive_topic, classes: 'ls-form ls-form-inline row' } %>
+  <%= render partial: 'shared/forms/description', locals: { object: @positive_topic, classes: 'ls-form ls-form-inline row validate' } %>
 
   <table class="ls-table ls-table-striped" id="positive-topics-table">
     <thead>
@@ -106,7 +106,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Pontos Negativos</h2>
   </header>
-  <%= render partial: 'shared/forms/description', locals: { object: @negative_topic, classes: 'ls-form ls-form-inline row' } %>
+  <%= render partial: 'shared/forms/description', locals: { object: @negative_topic, classes: 'ls-form ls-form-inline row validate' } %>
 
   <table class="ls-table ls-table-striped" id="negative-topics-table">
     <thead>
@@ -134,7 +134,7 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3">Dúvidas</h2>
   </header>
-  <%= render partial: 'shared/forms/description', locals: { object: @doubt, classes: 'ls-form ls-form-inline row' } %>
+  <%= render partial: 'shared/forms/description', locals: { object: @doubt, classes: 'ls-form ls-form-inline row validate' } %>
 
   <table class="ls-table ls-table-striped" id="doubts-table">
     <thead>

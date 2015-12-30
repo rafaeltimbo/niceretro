@@ -1,6 +1,6 @@
 <%= form_for [@retrospective, object], remote: true, html: { class: classes } do |f| %>
   <label class="ls-label col-md-6">
-    <%= f.text_field :description %>
+    <%= f.text_field :description, required: true %>
   </label>
   <div class="ls-actions-btn">
     <%= f.submit t('form.add'), class: 'ls-btn-primary' %>
