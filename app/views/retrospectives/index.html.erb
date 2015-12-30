@@ -40,9 +40,14 @@
             <td><%= l r.schedule, format: :small %></td>
             <td><%= t('table.room') %> <%= r.room %></td>
             <td>
-              <%= link_to '', retrospective_path(r), class: 'ls-btn-primary ls-ico-eye' %>
-              <%= link_to '', edit_retrospective_path(r.id), class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', r, class: 'ls-btn-danger ls-ico-close', method: :delete, data: { confirm: t('confirm') } %>
+              <div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">
+                <button  class="ls-btn"></button>
+                <ul class="ls-dropdown-nav">
+                  <li><%= link_to t('button.view'), retrospective_path(r) %></li>
+                  <li><%= link_to t('button.edit'), edit_retrospective_path(r.id) %></li>
+                  <li><%= link_to t('button.delete'), r, method: :delete, data: { confirm: t('confirm') } %></li>
+                </ul>
+              </div>
             </td>
           </tr>
         <% end %>

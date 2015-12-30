@@ -8,13 +8,19 @@
     '<tr data-id="<%= @positive_topic.id %>">' +
       '<td class="description"><%= @positive_topic.description %></td>' +
       '<td class="actions">' +
-        '<div class="ls-group-btn">' +
-          '<%= link_to "", edit_retrospective_positive_topic_path(@retrospective.id, @positive_topic.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
-          '<%= link_to "", [@retrospective, @positive_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+        '<div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">' +
+          '<button  class="ls-btn"></button>' +
+          '<ul class="ls-dropdown-nav">' +
+            '<li><%= link_to t("button.edit"), edit_retrospective_positive_topic_path(@retrospective.id, @positive_topic.id), remote: true, title: t("button.edit") %></li>' +
+            '<li><%= link_to t("button.delete"), [@retrospective, @positive_topic], method: :delete, remote: true, title: t("button.delete") %></li>' +
+          '</ul>' +
         '</div>' +
       '</td>' +
     '</tr>'
   );
+
+  // Init locastyle dropdown module
+  locastyle.dropdown.init();
 
   $('#positive_topic_description').next().remove();
   $('#new_positive_topic').find('label').removeClass('ls-error');

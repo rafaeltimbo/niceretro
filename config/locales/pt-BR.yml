@@ -22,6 +22,8 @@ pt-BR:
     edit: 'Editar'
     view: 'Visualizar'
     filter: 'Filtrar'
+    save: 'Salvar'
+    cancel: 'Cancelar'
   new:
     page_title: 'Nova Retrospectiva'
   edit:

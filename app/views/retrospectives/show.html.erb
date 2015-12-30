@@ -9,10 +9,10 @@
 
   <table class="ls-table ls-table-striped" id="demands-table">
     <thead>
-      <th>Ação</th>
+      <th>Descrição</th>
       <th>Responsável</th>
       <th>Status</th>
-      <th class="ls-width-250">Ações</th>
+      <th>Ações</th>
     </thead>
     <tbody>
       <% @demands.each do |d| %>
@@ -24,12 +24,15 @@
               <%= check_box_tag '', '1',  d.status %>
               <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
             </div>
-          <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+            <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
           </td>
           <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_demand_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil', title: 'Editar' %>
-              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
+            <div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><%= link_to t('button.edit'), edit_retrospective_demand_path(@retrospective.id, d.id), remote: true, title: t('button.edit') %></li>
+                <li><%= link_to t('button.delete'), [@retrospective, d], method: :delete, remote: true, title: t('button.delete') %></li>
+              </ul>
             </div>
           </td>
         </tr>
@@ -46,10 +49,10 @@
     </header>
     <table class="ls-table ls-table-striped" id="pending-demands-table">
       <thead>
-        <th>Ação</th>
+        <th>Descrição</th>
         <th>Responsável</th>
         <th>Status</th>
-        <th class="ls-width-250">Ações</th>
+        <th>Ações</th>
       </thead>
       <tbody>
         <% @latest_demands.each do |d| %>
@@ -61,10 +64,10 @@
                 <%= check_box_tag '', '1',  d.status %>
                 <label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>
               </div>
-            <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+              <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
             </td>
             <td>
-              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
+              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: t('button.delete') %>
             </td>
           </tr>
         <% end %>
@@ -83,16 +86,19 @@
   <table class="ls-table ls-table-striped" id="positive-topics-table">
     <thead>
       <th>Ponto Positivo</th>
-      <th class="ls-width-250">Ações</th>
+      <th>Ações</th>
     </thead>
     <tbody>
       <% @positive_topics.each do |p| %>
         <tr data-id="<%= p.id %>">
           <td class="description"><%= p.description %></td>
           <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_positive_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+            <div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><%= link_to t('button.edit'), edit_retrospective_positive_topic_path(@retrospective.id, p.id), remote: true, title: t('button.edit') %></li>
+                <li><%= link_to t('button.delete'), [@retrospective, p], method: :delete, remote: true, title: t('button.delete') %></li>
+              </ul>
             </div>
           </td>
         </tr>
@@ -111,16 +117,19 @@
   <table class="ls-table ls-table-striped" id="negative-topics-table">
     <thead>
       <th>Ponto Negativo</th>
-      <th class="ls-width-250">Ações</th>
+      <th>Ações</th>
     </thead>
     <tbody>
       <% @negative_topics.each do |p| %>
         <tr data-id="<%= p.id %>">
           <td class="description"><%= p.description %></td>
           <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_negative_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+            <div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><%= link_to t('button.edit'), edit_retrospective_negative_topic_path(@retrospective.id, p.id), remote: true, title: t('button.edit') %></li>
+                <li><%= link_to t('button.delete'), [@retrospective, p], method: :delete, remote: true, title: t('button.delete') %></li>
+              </ul>
             </div>
           </td>
         </tr>
@@ -139,16 +148,19 @@
   <table class="ls-table ls-table-striped" id="doubts-table">
     <thead>
       <th>Dúvida</th>
-      <th class="ls-width-250">Ações</th>
+      <th>Ações</th>
     </thead>
     <tbody>
       <% @doubts.each do |d| %>
         <tr data-id="<%= d.id %>">
           <td class="description"><%= d.description %></td>
           <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_doubt_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+            <div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">
+              <button  class="ls-btn"></button>
+              <ul class="ls-dropdown-nav">
+                <li><%= link_to t('button.edit'), edit_retrospective_doubt_path(@retrospective.id, d.id), remote: true, title: t('button.edit') %></li>
+                <li><%= link_to t('button.delete'), [@retrospective, d], method: :delete, remote: true, title: t('button.delete') %></li>
+              </ul>
             </div>
           </td>
         </tr>
