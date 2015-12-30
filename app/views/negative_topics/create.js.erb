@@ -6,18 +6,15 @@
     '<tr data-id="<%= @negative_topic.id %>">' +
       '<td class="description"><%= @negative_topic.description %></td>' +
       '<td class="actions">' +
-        '<div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">' +
-          '<button  class="ls-btn"></button>' +
-          '<ul class="ls-dropdown-nav">' +
-            '<li><%= link_to t("button.edit"), edit_retrospective_negative_topic_path(@retrospective.id, @negative_topic.id), remote: true, title: t("button.edit") %></li>' +
-            '<li><%= link_to t("button.delete"), [@retrospective, @negative_topic], method: :delete, remote: true, title: t("button.delete") %></li>' +
-          '</ul>' +
+        '<div class="ls-group-btn">' +
+          '<%= link_to "", edit_retrospective_negative_topic_path(@retrospective.id, @negative_topic.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
+          '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
         '</div>' +
       '</td>' +
     '</tr>'
   );
 
-  // Init locastyle dropdown module
+  // Init the dropdown module to
   locastyle.dropdown.init();
 
   // Remove the input value

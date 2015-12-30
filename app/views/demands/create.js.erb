@@ -14,12 +14,9 @@
         '<%= link_to '', update_status_demand_path(@demand.id), remote: true, class: "ls-display-none" %>' +
       '</td>' +
       '<td class="actions">' +
-        '<div data-ls-module="dropdown" class="ls-dropdown ls-group-btn">' +
-          '<button  class="ls-btn"></button>' +
-          '<ul class="ls-dropdown-nav">' +
-            '<li><%= link_to t("button.edit"), edit_retrospective_demand_path(@retrospective.id, @demand.id), remote: true %></li>' +
-            '<li><%= link_to t("button.delete"), [@retrospective, @demand], method: :delete, remote: true %></li>' +
-          '</ul>' +
+        '<div class="ls-group-btn">' +
+          '<%= link_to "", edit_retrospective_demand_path(@retrospective.id, @demand.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
+          '<%= link_to "", [@retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
         '</div>' +
       '</td>' +
     '</tr>'
@@ -29,9 +26,8 @@
     $(this).next().trigger('click');
   });
 
-  // Init locastyle modules
+  // Init the swicth module
   locastyle.switchButton.init();
-  locastyle.dropdown.init();
 
   // Remove the input value
   $('#demand_description').val('');
