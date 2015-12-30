@@ -7,35 +7,37 @@
   </header>
   <%= render partial: 'shared/forms/demand', locals: { object: @demand, classes: 'ls-form ls-form-horizontal validate' } %>
 
-  <table class="ls-table ls-table-striped" id="demands-table">
-    <thead>
-      <th><%= t('table.description') %></th>
-      <th><%= t('table.user') %></th>
-      <th><%= t('table.status') %></th>
-      <th class="ls-width-150"><%= t('table.actions') %></th>
-    </thead>
-    <tbody>
-      <% @demands.each do |d| %>
-        <tr data-id="<%= d.id %>">
-          <td class="description"><%= d.description %></td>
-          <td class="user"><%= d.user %></td>
-          <td>
-            <div data-ls-module="switchButton" class="ls-switch-btn">
-              <%= check_box_tag '', '1',  d.status %>
-              <label class="ls-switch-label" ls-switch-off="<%= t('button.pending') %>" ls-switch-on="<%= t('button.completed') %>"><span></span></label>
-            </div>
-          <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
-          </td>
-          <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_demand_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil', title: 'Editar' %>
-              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="ls-table-responsive">
+    <table class="ls-table ls-table-striped" id="demands-table">
+      <thead>
+        <th><%= t('table.description') %></th>
+        <th><%= t('table.user') %></th>
+        <th><%= t('table.status') %></th>
+        <th class="ls-width-150"><%= t('table.actions') %></th>
+      </thead>
+      <tbody>
+        <% @demands.each do |d| %>
+          <tr data-id="<%= d.id %>">
+            <td class="description"><%= d.description %></td>
+            <td class="user"><%= d.user %></td>
+            <td>
+              <div data-ls-module="switchButton" class="ls-switch-btn">
+                <%= check_box_tag '', '1',  d.status %>
+                <label class="ls-switch-label" ls-switch-off="<%= t('button.pending') %>" ls-switch-on="<%= t('button.completed') %>"><span></span></label>
+              </div>
+            <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+            </td>
+            <td class="actions">
+              <div class="ls-group-btn">
+                <%= link_to '', edit_retrospective_demand_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil', title: 'Editar' %>
+                <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Pending Actions -->
@@ -44,32 +46,34 @@
     <header class="ls-info-header">
       <h2 class="ls-title-3"><%= t('table.pending_actions') %></h2>
     </header>
-    <table class="ls-table ls-table-striped" id="pending-demands-table">
-      <thead>
-        <th><%= t('table.description') %></th>
-        <th><%= t('table.user') %></th>
-        <th><%= t('table.status') %></th>
-        <th class="ls-width-150"><%= t('table.actions') %></th>
-      </thead>
-      <tbody>
-        <% @latest_demands.each do |d| %>
-          <tr data-id="<%= d.id %>">
-            <td><%= d.description %></td>
-            <td><%= d.user %></td>
-            <td>
-              <div data-ls-module="switchButton" class="ls-switch-btn">
-                <%= check_box_tag '', '1',  d.status %>
-                <label class="ls-switch-label" ls-switch-off="<%= t('button.pending') %>" ls-switch-on="<%= t('button.completed') %>"><span></span></label>
-              </div>
-            <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
-            </td>
-            <td>
-              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="ls-table-responsive">
+      <table class="ls-table ls-table-striped" id="pending-demands-table">
+        <thead>
+          <th><%= t('table.description') %></th>
+          <th><%= t('table.user') %></th>
+          <th><%= t('table.status') %></th>
+          <th class="ls-width-150"><%= t('table.actions') %></th>
+        </thead>
+        <tbody>
+          <% @latest_demands.each do |d| %>
+            <tr data-id="<%= d.id %>">
+              <td><%= d.description %></td>
+              <td><%= d.user %></td>
+              <td>
+                <div data-ls-module="switchButton" class="ls-switch-btn">
+                  <%= check_box_tag '', '1',  d.status %>
+                  <label class="ls-switch-label" ls-switch-off="<%= t('button.pending') %>" ls-switch-on="<%= t('button.completed') %>"><span></span></label>
+                </div>
+              <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+              </td>
+              <td>
+                <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true, title: 'Deletar' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 <% end %>
 
@@ -80,25 +84,27 @@
   </header>
   <%= render partial: 'shared/forms/description', locals: { object: @positive_topic, classes: 'ls-form ls-form-inline row validate' } %>
 
-  <table class="ls-table ls-table-striped" id="positive-topics-table">
-    <thead>
-      <th><%= t('table.positive_topic') %></th>
-      <th class="ls-width-150"><%= t('table.actions') %></th>
-    </thead>
-    <tbody>
-      <% @positive_topics.each do |p| %>
-        <tr data-id="<%= p.id %>">
-          <td class="description"><%= p.description %></td>
-          <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_positive_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="ls-table-responsive">
+    <table class="ls-table ls-table-striped" id="positive-topics-table">
+      <thead>
+        <th><%= t('table.positive_topic') %></th>
+        <th class="ls-width-150"><%= t('table.actions') %></th>
+      </thead>
+      <tbody>
+        <% @positive_topics.each do |p| %>
+          <tr data-id="<%= p.id %>">
+            <td class="description"><%= p.description %></td>
+            <td class="actions">
+              <div class="ls-group-btn">
+                <%= link_to '', edit_retrospective_positive_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
+                <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Negative Topics -->
@@ -108,25 +114,27 @@
   </header>
   <%= render partial: 'shared/forms/description', locals: { object: @negative_topic, classes: 'ls-form ls-form-inline row validate' } %>
 
-  <table class="ls-table ls-table-striped" id="negative-topics-table">
-    <thead>
-      <th><%= t('table.negative_topic') %></th>
-      <th class="ls-width-150"><%= t('table.actions') %></th>
-    </thead>
-    <tbody>
-      <% @negative_topics.each do |p| %>
-        <tr data-id="<%= p.id %>">
-          <td class="description"><%= p.description %></td>
-          <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_negative_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="ls-table-responsive">
+    <table class="ls-table ls-table-striped" id="negative-topics-table">
+      <thead>
+        <th><%= t('table.negative_topic') %></th>
+        <th class="ls-width-150"><%= t('table.actions') %></th>
+      </thead>
+      <tbody>
+        <% @negative_topics.each do |p| %>
+          <tr data-id="<%= p.id %>">
+            <td class="description"><%= p.description %></td>
+            <td class="actions">
+              <div class="ls-group-btn">
+                <%= link_to '', edit_retrospective_negative_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
+                <%= link_to '', [@retrospective, p], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Doubts -->
@@ -136,23 +144,25 @@
   </header>
   <%= render partial: 'shared/forms/description', locals: { object: @doubt, classes: 'ls-form ls-form-inline row validate' } %>
 
-  <table class="ls-table ls-table-striped" id="doubts-table">
-    <thead>
-      <th><%= t('table.doubt') %></th>
-      <th class="ls-width-150"><%= t('table.actions') %></th>
-    </thead>
-    <tbody>
-      <% @doubts.each do |d| %>
-        <tr data-id="<%= d.id %>">
-          <td class="description"><%= d.description %></td>
-          <td class="actions">
-            <div class="ls-group-btn">
-              <%= link_to '', edit_retrospective_doubt_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="ls-table-responsive">
+    <table class="ls-table ls-table-striped" id="doubts-table">
+      <thead>
+        <th><%= t('table.doubt') %></th>
+        <th class="ls-width-150"><%= t('table.actions') %></th>
+      </thead>
+      <tbody>
+        <% @doubts.each do |d| %>
+          <tr data-id="<%= d.id %>">
+            <td class="description"><%= d.description %></td>
+            <td class="actions">
+              <div class="ls-group-btn">
+                <%= link_to '', edit_retrospective_doubt_path(@retrospective.id, d.id), remote: true, class: 'ls-btn ls-ico-pencil' %>
+                <%= link_to '', [@retrospective, d], class: 'ls-btn-danger ls-ico-close', method: :delete, remote: true %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

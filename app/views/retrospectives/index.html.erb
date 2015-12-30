@@ -11,7 +11,7 @@
           <%= link_to @next_retrospective.title, retrospective_path(@next_retrospective) %>
           <small><%= t('table.date') %>: <%= l @next_retrospective.date.to_date, format: :default %> - <%= l @next_retrospective.schedule, format: :small %></small>
         </div>
-        <div class="col-md-3 ls-txt-right">
+        <div class="col-md-3 ls-txt-right hidden-xs">
           <%= link_to t('button.view'), retrospective_path(@next_retrospective), class: 'ls-btn-primary' %>
         </div>
       </header>
@@ -22,32 +22,35 @@
     <header class="ls-info-header">
       <h2 class="ls-title-3"><%= t('title.retrospectives_historic') %></h2>
     </header>
-    <table class="ls-table">
-      <thead>
-        <tr>
-          <th><%= t('table.title') %></th>
-          <th><%= t('table.date') %></th>
-          <th><%= t('table.schedule') %></th>
-          <th><%= t('table.room') %></th>
-          <th><%= t('table.actions') %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @retrospectives.each do |r| %>
+    <div class="ls-table-responsive">
+      <table class="ls-table">
+        <thead>
           <tr>
-            <td><%= r.title %></td>
-            <td><%= l r.date.to_date, format: :default %></td>
-            <td><%= l r.schedule, format: :small %></td>
-            <td><%= t('table.room') %> <%= r.room %></td>
-            <td>
-              <%= link_to '', retrospective_path(r), class: 'ls-btn-primary ls-ico-eye' %>
-              <%= link_to '', edit_retrospective_path(r.id), class: 'ls-btn ls-ico-pencil' %>
-              <%= link_to '', r, class: 'ls-btn-danger ls-ico-close', method: :delete, data: { confirm: t('confirm') } %>
-            </td>
+            <th><%= t('table.title') %></th>
+            <th><%= t('table.date') %></th>
+            <th><%= t('table.schedule') %></th>
+            <th><%= t('table.room') %></th>
+            <th><%= t('table.actions') %></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @retrospectives.each do |r| %>
+            <tr>
+              <td><%= link_to r.title, retrospective_path(r) %></td>
+              <td><%= l r.date.to_date, format: :default %></td>
+              <td><%= l r.schedule, format: :small %></td>
+              <td><%= t('table.room') %> <%= r.room %></td>
+              <td>
+                <div class="ls-group-btn">
+                  <%= link_to '', edit_retrospective_path(r.id), class: 'ls-btn ls-ico-pencil' %>
+                  <%= link_to '', r, class: 'ls-btn-danger ls-ico-close', method: :delete, data: { confirm: t('confirm') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 <% else %>
   <div class="ls-box ls-board-box">

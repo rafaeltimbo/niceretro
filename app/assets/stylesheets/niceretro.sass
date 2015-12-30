@@ -1,0 +1,31 @@
+// Form Horizontal
+.ls-form-horizontal
+  [class*="ls-btn"]
+    margin-top: 19px
+
+@media screen and (max-width: 767px)
+  // Table
+  .ls-table-responsive
+    width: 100%
+    border: 1px solid #ddd
+    overflow-y: hidden
+    margin-top: 20px
+    margin-bottom: 20px
+
+    & > [class*="ls-table"]
+      width: auto
+      margin-top: 0
+      margin-bottom: 0
+
+      .ls-group-btn [class*="ls-btn"]
+        float: none !important
+        margin-left: 0 !important
+        margin-bottom: 5px
+
+        &:last-child
+          margin-bottom: 0
+
+  // Form Horizontal
+  .ls-form-horizontal
+    [class*="col"] [class*="ls-btn"]
+      margin-top: 0
