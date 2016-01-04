@@ -4,6 +4,12 @@
     margin-top: 19px
 
 @media screen and (max-width: 767px)
+  // Form Horizontal
+  .ls-form-horizontal
+    [class*="col"] [class*="ls-btn"]
+      margin-top: 0
+
+@media screen and (max-width: 450px)
   // Table
   .ls-table-responsive
     width: 100%
@@ -17,15 +23,10 @@
       margin-top: 0
       margin-bottom: 0
 
-      .ls-group-btn [class*="ls-btn"]
+      [class*="ls-btn"]
         float: none !important
         margin-left: 0 !important
         margin-bottom: 5px
 
         &:last-child
           margin-bottom: 0
-
-  // Form Horizontal
-  .ls-form-horizontal
-    [class*="col"] [class*="ls-btn"]
-      margin-top: 0

@@ -11,6 +11,8 @@ function clearEditMode() {
   var descriptionField = $('#doubt-edit-description');
 
   doubtsTable.next('form').remove();
+  doubtsTable.find('.ls-width-200').removeClass('ls-width-200').addClass('ls-width-150');
+
   descriptionField.closest('tr').find('.ls-group-btn').show();
   descriptionField.closest('td').html(descriptionField.val());
   $('#editActions').remove();
@@ -25,10 +27,12 @@ editLine.find('.description').html('<input type="text" value="<%= @doubt.descrip
 editLine.find('.ls-group-btn').hide();
 editLine.find('.actions').append(
   '<div id="editActions">' +
-    '<a class="ls-btn-primary" id="doubt-save-edit">Salvar</a>' +
-    '<a class="ls-btn" id="doubt-cancel-edit">Cancelar</a>' +
+    '<a class="ls-btn-primary" id="doubt-save-edit"><%= t("button.save") %></a>' +
+    '<a class="ls-btn" id="doubt-cancel-edit"><%= t("button.cancel") %></a>' +
   '</div>'
 );
+
+doubtsTable.find('.ls-width-150').removeClass('ls-width-150').addClass('ls-width-200');
 
 $('#doubt-save-edit').on('click', submitEditedLine);
 $('#doubt-cancel-edit').on('click', clearEditMode);

@@ -2,6 +2,7 @@ var negativeTopicsTable = $('#negative-topics-table');
 var editLine = negativeTopicsTable.find('[data-id="' + <%= @negative_topic.id %> + '"]');
 
 negativeTopicsTable.next('form').remove();
+negativeTopicsTable.find('.ls-width-200').removeClass('ls-width-200').addClass('ls-width-150');
 
 editLine.find('.description').html('<%= @negative_topic.description %>');
 editLine.find('.ls-group-btn').show();

@@ -2,6 +2,7 @@ var doubtsTable = $('#doubts-table');
 var editLine = doubtsTable.find('[data-id="' + <%= @doubt.id %> + '"]');
 
 doubtsTable.next('form').remove();
+doubtsTable.find('.ls-width-200').removeClass('ls-width-200').addClass('ls-width-150');
 
 editLine.find('.description').html('<%= @doubt.description %>');
 editLine.find('.ls-group-btn').show();

@@ -7,8 +7,8 @@
       '<td class="description"><%= @negative_topic.description %></td>' +
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
-          '<%= link_to "", edit_retrospective_negative_topic_path(@retrospective.id, @negative_topic.id), remote: true, class: "ls-btn ls-ico-pencil" %>' +
-          '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true %>' +
+          '<%= link_to "", edit_retrospective_negative_topic_path(@retrospective.id, @negative_topic.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.edit") %>' +
+          '<%= link_to "", [@retrospective, @negative_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.delete") %>' +
         '</div>' +
       '</td>' +
     '</tr>'

@@ -2,6 +2,7 @@ var positiveTopicsTable = $('#positive-topics-table');
 var editLine = positiveTopicsTable.find('[data-id="' + <%= @positive_topic.id %> + '"]');
 
 positiveTopicsTable.next('form').remove();
+positiveTopicsTable.find('.ls-width-200').removeClass('ls-width-200').addClass('ls-width-150');
 
 editLine.find('.description').html('<%= @positive_topic.description %>');
 editLine.find('.ls-group-btn').show();

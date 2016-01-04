@@ -11,6 +11,8 @@ function clearEditMode() {
   var descriptionField = $('#positive-topic-edit-description');
 
   positiveTopicsTable.next('form').remove();
+  positiveTopicsTable.find('.ls-width-200').removeClass('ls-width-200').addClass('ls-width-150');
+
   descriptionField.closest('tr').find('.ls-group-btn').show();
   descriptionField.closest('td').html(descriptionField.val());
   $('#editActions').remove();
@@ -25,10 +27,12 @@ editLine.find('.description').html('<input type="text" value="<%= @positive_topi
 editLine.find('.ls-group-btn').hide();
 editLine.find('.actions').append(
   '<div id="editActions">' +
-    '<a class="ls-btn-primary" id="positive-topic-save-edit">Salvar</a>' +
-    '<a class="ls-btn" id="positive-topic-cancel-edit">Cancelar</a>' +
+    '<a class="ls-btn-primary" id="positive-topic-save-edit"><%= t("button.save") %></a>' +
+    '<a class="ls-btn" id="positive-topic-cancel-edit"><%= t("button.cancel") %></a>' +
   '</div>'
 );
+
+positiveTopicsTable.find('.ls-width-150').removeClass('ls-width-150').addClass('ls-width-200');
 
 $('#positive-topic-save-edit').on('click', submitEditedLine);
 $('#positive-topic-cancel-edit').on('click', clearEditMode);
