@@ -2,7 +2,11 @@ class PositiveTopicsController < ApplicationController
   include RemoteFormErrorsHelper
 
   before_action :retrospective_id
-  respond_to :html, :js
+  respond_to :js
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render 'not_found', status: 404
+  end
 
   def create
     @retrospective = Retrospective.find(@retrospective_id)
