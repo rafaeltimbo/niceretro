@@ -69,7 +69,7 @@ describe PositiveTopicsController do
     end
   end
 
-  describe 'POST #update' do
+  describe 'PUT #update' do
     it 'return success status' do
       put :update, retrospective_id: retrospective.id, id: positive_topic.id, format: :js, positive_topic: { description: 'Updated description' }
       expect(response).to be_successful

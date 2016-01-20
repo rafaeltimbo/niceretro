@@ -4,6 +4,10 @@ class NegativeTopicsController < ApplicationController
   before_action :retrospective_id
   respond_to :html, :js
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render 'not_found', status: 404
+  end
+
   def create
     @retrospective = Retrospective.find(@retrospective_id)
     @negative_topic = @retrospective.negative_topics.build(negative_topics_params)
