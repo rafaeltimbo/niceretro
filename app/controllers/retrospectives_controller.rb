@@ -40,7 +40,7 @@ class RetrospectivesController < ApplicationController
 
   def show
     @retrospective = Retrospective.find(params[:id])
-    @latest_demands = Demand.all.order(created_at: :asc).where(status: false).where.not(retrospective_id: @retrospective.id).where('created_at < ?', @retrospective.date)
+    @latest_demands = Demand.latest_demands(@retrospective)
     demands
     doubts
     positive_topics
