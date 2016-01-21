@@ -1,14 +1,19 @@
 require 'rails_helper'
 
 describe RetrospectivesController do
-
-  let(:retrospective) { Retrospective.create(title: 'retrotest', date: '25/11/2015', room: 4) }
+  let(:retrospective) do
+    Retrospective.create( title: 'retrotest', date: '25/11/2015', room: 4)
+  end
 
   describe 'GET #index' do
     before { get :index }
 
     it 'assigns all retrospectives to @retrospectives' do
       expect(assigns(:retrospectives)).to eq([retrospective])
+    end
+
+    it 'assigns next retrospective to @next_retrospective' do
+      expect(assigns(:next_retrospective)).to eq([retrospective])
     end
 
     it { is_expected.to respond_with :ok }
@@ -28,8 +33,11 @@ describe RetrospectivesController do
 
   describe 'POST #create' do
     before do
-      post :create,
-              retrospective: { title: 'retro1', date: '25/11/2015', room: 1 }
+      post :create, retrospective: {
+        title: 'retro1',
+        date: '25/11/2015',
+        room: 1
+      }
     end
 
     it { is_expected.to redirect_to retrospectives_path }
@@ -47,9 +55,11 @@ describe RetrospectivesController do
 
   describe 'PUT #update' do
     before do
-      put :update,
-              id: retrospective.id,
-              retrospective: { title: 'retro2', date: '25/11/2015', room: 1 }
+      put :update, id: retrospective.id, retrospective: {
+        title: 'retro2',
+        date: '25/11/2015',
+        room: 1
+      }
     end
 
     it 'should have the edited data' do
@@ -63,5 +73,93 @@ describe RetrospectivesController do
     before { delete :destroy, id: retrospective.id }
 
     it { is_expected.to redirect_to retrospectives_path }
+  end
+
+  describe 'GET #show' do
+    let!(:old_retrospective) do
+      Retrospective.create(
+        title: 'Old retrospective',
+        date: '24/11/2015',
+        room: 5
+      )
+    end
+
+    let!(:old_demand) do
+      Demand.create(
+        description: 'Old demand description',
+        retrospective_id: old_retrospective.id,
+        created_at: '24/11/2015'
+      )
+    end
+
+    let!(:demand) do
+      Demand.create(
+        description: 'Demand description',
+        retrospective_id: retrospective.id
+      )
+    end
+
+    let!(:doubt) do
+      Doubt.create(
+        description: 'Doubt description',
+        retrospective_id: retrospective.id
+      )
+    end
+
+    let!(:positive_topic) do
+      PositiveTopic.create(
+        description: 'Positive description',
+        retrospective_id: retrospective.id
+      )
+    end
+
+    let!(:negative_topic) do
+      NegativeTopic.create(
+        description: 'Negative description',
+        retrospective_id: retrospective.id
+      )
+    end
+
+    before { get :show, id: retrospective.id }
+
+    it 'render show template' do
+      expect(response).to render_template('show')
+    end
+
+    it 'get all latest demands' do
+      expect(assigns(:latest_demands)).to eq([old_demand])
+    end
+
+    it 'get all retrospective demands' do
+      expect(assigns(:demands)).to eq([demand])
+    end
+
+    it 'instantiates a new demand' do
+      expect(assigns(:demand)).to be_a_new Demand
+    end
+
+    it 'get all retrospective doubts' do
+      expect(assigns(:doubts)).to eq([doubt])
+    end
+
+    it 'instantiates a new doubt' do
+      expect(assigns(:doubt)).to be_a_new Doubt
+    end
+
+    it 'get all retrospective positive topics' do
+      expect(assigns(:positive_topics)).to eq([positive_topic])
+    end
+
+    it 'instantiates a new negative topic' do
+      expect(assigns(:positive_topic)).to be_a_new PositiveTopic
+    end
+
+    it 'get all retrospective negative topics' do
+      expect(assigns(:negative_topics)).to eq([negative_topic])
+    end
+
+    it 'instantiates a new negative topic' do
+      expect(assigns(:negative_topic)).to be_a_new NegativeTopic
+    end
   end
 end
