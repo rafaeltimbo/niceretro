@@ -161,5 +161,13 @@ describe RetrospectivesController do
     it 'instantiates a new negative topic' do
       expect(assigns(:negative_topic)).to be_a_new NegativeTopic
     end
+
+    it 'validates a enabled retrospective' do
+      expect(retrospective.is_enabled?).to be true
+    end
+
+    it 'validates a disabled retrospective' do
+      expect(old_retrospective.is_enabled?).to be false
+    end
   end
 end

@@ -5,7 +5,10 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3"><%= t('title.actions') %></h2>
   </header>
-  <%= render partial: 'shared/forms/demand', locals: { object: @demand, classes: 'ls-form ls-form-horizontal validate' } %>
+  <%= render partial: 'shared/forms/demand', locals: {
+    object: @demand,
+    classes: 'ls-form ls-form-horizontal validate'
+  } if @is_enabled %>
 
   <div class="ls-table-responsive">
     <table class="ls-table ls-table-striped" id="demands-table">
@@ -82,7 +85,10 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3"><%= t('title.positive_topics') %></h2>
   </header>
-  <%= render partial: 'shared/forms/description', locals: { object: @positive_topic, classes: 'ls-form ls-form-inline row validate' } %>
+  <%= render partial: 'shared/forms/description', locals: {
+    object: @positive_topic,
+    classes: 'ls-form ls-form-inline row validate'
+  } if @is_enabled %>
 
   <div class="ls-table-responsive">
     <table class="ls-table ls-table-striped" id="positive-topics-table">
@@ -112,7 +118,10 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3"><%= t('title.negative_topics') %></h2>
   </header>
-  <%= render partial: 'shared/forms/description', locals: { object: @negative_topic, classes: 'ls-form ls-form-inline row validate' } %>
+  <%= render partial: 'shared/forms/description', locals: {
+    object: @negative_topic,
+    classes: 'ls-form ls-form-inline row validate'
+  } if @is_enabled %>
 
   <div class="ls-table-responsive">
     <table class="ls-table ls-table-striped" id="negative-topics-table">
@@ -142,7 +151,10 @@
   <header class="ls-info-header">
     <h2 class="ls-title-3"><%= t('title.doubts') %></h2>
   </header>
-  <%= render partial: 'shared/forms/description', locals: { object: @doubt, classes: 'ls-form ls-form-inline row validate' } %>
+  <%= render partial: 'shared/forms/description', locals: {
+    object: @doubt,
+    classes: 'ls-form ls-form-inline row validate'
+  } if @is_enabled %>
 
   <div class="ls-table-responsive">
     <table class="ls-table ls-table-striped" id="doubts-table">

@@ -41,6 +41,7 @@ class RetrospectivesController < ApplicationController
   def show
     @retrospective = Retrospective.find(params[:id])
     @latest_demands = Demand.latest_demands(@retrospective)
+    @is_enabled = @retrospective.is_enabled?
     demands
     doubts
     positive_topics

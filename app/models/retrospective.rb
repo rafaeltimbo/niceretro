@@ -5,4 +5,8 @@ class Retrospective < ActiveRecord::Base
   has_many :positive_topics, dependent: :destroy
 
   scope :next, -> { order(date: :desc).first }
+
+  def is_enabled?
+    self == Retrospective.next
+  end
 end
