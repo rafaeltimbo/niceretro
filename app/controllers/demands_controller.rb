@@ -30,6 +30,7 @@ class DemandsController < ApplicationController
   def update_status
     @demand = Demand.find(params[:id])
     @demand.status = !@demand.status
+    @demand.status ? @demand.resolved_at = Date.today : @demand.resolved_at = nil
     @demand.save
   end
 

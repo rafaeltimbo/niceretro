@@ -102,6 +102,25 @@ describe DemandsController do
       expect(demand.reload.status).to be true
     end
 
+    context 'when resolve a demand' do
+      it 'add the resolve date' do
+        post :update_status, id: demand.id, format: :js,
+        demand: { status: true }
+        expect(demand.reload.resolved_at.to_date).to eq(Date.today)
+      end
+    end
+
+    context 'when get back on a resolved demand' do
+      before { post :update_status, id: demand.id, format: :js,
+        demand: { status: true } }
+
+      it 'remove the resolve date' do
+        post :update_status, id: demand.id, format: :js,
+        demand: { status: true }
+        expect(demand.reload.resolved_at).to be_nil
+      end
+    end
+
     context 'when demand does not exist' do
       before { demand.destroy }
 

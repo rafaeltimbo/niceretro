@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228165043) do
+ActiveRecord::Schema.define(version: 20160127115200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20151228165043) do
     t.boolean  "status",           default: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.datetime "resolved_at"
   end
 
   add_index "demands", ["retrospective_id"], name: "index_demands_on_retrospective_id", using: :btree
