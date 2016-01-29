@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe RetrospectivesController do
   let(:retrospective) do
-    Retrospective.create( title: 'retrotest', date: '25/11/2015', room: 4)
+    create(:retrospective)
   end
 
   describe 'GET #index' do
@@ -33,11 +33,7 @@ describe RetrospectivesController do
 
   describe 'POST #create' do
     before do
-      post :create, retrospective: {
-        title: 'retro1',
-        date: '25/11/2015',
-        room: 1
-      }
+      post :create, retrospective: attributes_for(:retrospective)
     end
 
     it { is_expected.to redirect_to retrospectives_path }
@@ -55,11 +51,7 @@ describe RetrospectivesController do
 
   describe 'PUT #update' do
     before do
-      put :update, id: retrospective.id, retrospective: {
-        title: 'retro2',
-        date: '25/11/2015',
-        room: 1
-      }
+      put :update, id: retrospective.id, retrospective: { title: 'retro2' }
     end
 
     it 'should have the edited data' do
@@ -76,48 +68,28 @@ describe RetrospectivesController do
   end
 
   describe 'GET #show' do
-    let!(:old_retrospective) do
-      Retrospective.create(
-        title: 'Old retrospective',
-        date: '24/11/2015',
-        room: 5
-      )
+    let!(:old_retro) do
+      create(:retrospective, title: 'Old retrospective', date: '24/11/2015')
     end
 
     let!(:old_demand) do
-      Demand.create(
-        description: 'Old demand description',
-        retrospective_id: old_retrospective.id,
-        created_at: '24/11/2015'
-      )
+      create(:demand, retrospective_id: old_retro.id, created_at: '24/11/2015')
     end
 
     let!(:demand) do
-      Demand.create(
-        description: 'Demand description',
-        retrospective_id: retrospective.id
-      )
+      create(:demand, retrospective_id: retrospective.id)
     end
 
     let!(:doubt) do
-      Doubt.create(
-        description: 'Doubt description',
-        retrospective_id: retrospective.id
-      )
+      create(:doubt, retrospective_id: retrospective.id)
     end
 
     let!(:positive_topic) do
-      PositiveTopic.create(
-        description: 'Positive description',
-        retrospective_id: retrospective.id
-      )
+      create(:positive_topic, retrospective_id: retrospective.id)
     end
 
     let!(:negative_topic) do
-      NegativeTopic.create(
-        description: 'Negative description',
-        retrospective_id: retrospective.id
-      )
+      create(:negative_topic, retrospective_id: retrospective.id)
     end
 
     before { get :show, id: retrospective.id }

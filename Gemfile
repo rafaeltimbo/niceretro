@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-meta'
   gem 'rspec-rails', '~> 3.4'
+  gem 'factory_girl_rails'
 end
 
 group :development do
