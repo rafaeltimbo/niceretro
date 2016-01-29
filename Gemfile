@@ -41,6 +41,7 @@ group :development, :test do
   gem 'pry-meta'
   gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails'
+  gem 'timecop'
 end
 
 group :development do
