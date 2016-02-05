@@ -13,6 +13,9 @@
         '</div>' +
         '<%= link_to '', update_status_demand_path(@demand.id), remote: true, class: "ls-display-none" %>' +
       '</td>' +
+      '<td class="days">' +
+        '<%= !@demand.status ? @demand.opened_days.to_s + " " + t("table.days") : "--" %>' +
+      '</td>' +
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
           '<%= link_to "", edit_retrospective_demand_path(@retrospective.id, @demand.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.edit") %>' +

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Retrospective, type: :model do
-  let(:retrospective) do
-    Retrospective.create(title: 'Retro', date: '25/11/2015', room: 4)
-  end
+  let(:retrospective) { create(:retrospective) }
 
   describe '#is_enabled?' do
     context 'when not exists a newer retrospective' do
@@ -14,7 +12,7 @@ RSpec.describe Retrospective, type: :model do
 
     context 'when a newer retrospective already exists' do
       before do
-        Retrospective.create(title: 'New retro', date: '26/11/2015', room: 5)
+        create(:retrospective, title: 'Newer retro', date: '26/11/2015')
       end
 
       it 'return false' do

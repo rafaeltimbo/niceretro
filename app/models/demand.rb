@@ -6,4 +6,8 @@ class Demand < ActiveRecord::Base
     .where(status: false).where.not(retrospective_id: retrospective.id)
     .where('created_at < ?', retrospective.date)
   }
+
+  def opened_days
+    (Date.today - self.created_at.to_date).to_i
+  end
 end
