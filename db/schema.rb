@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222155602) do
+ActiveRecord::Schema.define(version: 20160222164816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20160222155602) do
     t.text     "description"
     t.string   "type"
     t.integer  "retrospective_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "like"
-    t.integer  "dislike"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "like",             default: 0
+    t.integer  "dislike",          default: 0
   end
 
   add_index "topics", ["retrospective_id"], name: "index_topics_on_retrospective_id", using: :btree
