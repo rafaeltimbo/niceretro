@@ -5,6 +5,10 @@
   $('#negative-topics-table').find('tbody').append(
     '<tr data-id="<%= @negative_topic.id %>">' +
       '<td class="description"><%= @negative_topic.description %></td>' +
+      '<td class="like">' +
+        '<%= link_to (" (" + @negative_topic.like.to_s + ")"), like_topic_path(@negative_topic), method: :post, remote: true, class: "ls-btn ls-color-success ls-ico-thumbs-up like-button" %>' +
+        '<%= link_to (" (" + @negative_topic.dislike.to_s + ")"), dislike_topic_path(@negative_topic), method: :post, remote: true, class: "ls-btn ls-color-danger ls-ico-thumbs-up2 dislike-button" %>' +
+      '</td>' +
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
           '<%= link_to "", edit_retrospective_negative_topic_path(@retrospective.id, @negative_topic.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.edit") %>' +

@@ -21,6 +21,7 @@ pt-BR:
     title: 'Título'
     date: 'Data'
     room: 'Sala'
+    like: 'Like'
     actions: 'Ações'
     products: 'Produtos'
     pending_actions: 'Ações Pendentes'

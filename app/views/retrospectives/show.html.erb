@@ -102,12 +102,17 @@
     <table class="ls-table ls-table-striped" id="positive-topics-table">
       <thead>
         <th><%= t('table.positive_topic') %></th>
+        <th class="ls-width-250"><%= t('table.like') %></th>
         <th class="ls-width-150"><%= t('table.actions') %></th>
       </thead>
       <tbody>
         <% @positive_topics.each do |p| %>
           <tr data-id="<%= p.id %>">
             <td class="description"><%= p.description %></td>
+            <td class="like">
+              <%= link_to (' (' + p.like.to_s + ')'), like_topic_path(p), method: :post, remote: true, class: 'ls-btn ls-color-success ls-ico-thumbs-up like-button' %>
+              <%= link_to (' (' + p.dislike.to_s + ')'), dislike_topic_path(p), method: :post, remote: true, class: 'ls-btn ls-color-danger ls-ico-thumbs-up2 dislike-button' %>
+            </td>
             <td class="actions">
               <div class="ls-group-btn">
                 <%= link_to '', edit_retrospective_positive_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil', title: t('button.edit') %>
@@ -135,12 +140,17 @@
     <table class="ls-table ls-table-striped" id="negative-topics-table">
       <thead>
         <th><%= t('table.negative_topic') %></th>
+        <th class="ls-width-250"><%= t('table.like') %></th>
         <th class="ls-width-150"><%= t('table.actions') %></th>
       </thead>
       <tbody>
         <% @negative_topics.each do |p| %>
           <tr data-id="<%= p.id %>">
             <td class="description"><%= p.description %></td>
+            <td class="like">
+              <%= link_to (' (' + p.like.to_s + ')'), like_topic_path(p), method: :post, remote: true, class: 'ls-btn ls-color-success ls-ico-thumbs-up like-button' %>
+              <%= link_to (' (' + p.dislike.to_s + ')'), dislike_topic_path(p), method: :post, remote: true, class: 'ls-btn ls-color-danger ls-ico-thumbs-up2 dislike-button' %>
+            </td>
             <td class="actions">
               <div class="ls-group-btn">
                 <%= link_to '', edit_retrospective_negative_topic_path(@retrospective.id, p.id), remote: true, class: 'ls-btn ls-ico-pencil', title: t('button.edit') %>

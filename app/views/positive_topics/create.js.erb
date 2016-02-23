@@ -7,9 +7,13 @@
   $('#positive-topics-table').find('tbody').append(
     '<tr data-id="<%= @positive_topic.id %>">' +
       '<td class="description"><%= @positive_topic.description %></td>' +
+      '<td class="like">' +
+        '<%= link_to (" (" + @positive_topic.like.to_s + ")"), like_topic_path(@positive_topic), method: :post, remote: true, class: "ls-btn ls-color-success ls-ico-thumbs-up like-button" %>' +
+        '<%= link_to (" (" + @positive_topic.dislike.to_s + ")"), dislike_topic_path(@positive_topic), method: :post, remote: true, class: "ls-btn ls-ico-thumbs-up2 dislike-button" %>' +
+      '</td>' +
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
-          '<%= link_to "", edit_retrospective_positive_topic_path(@retrospective.id, @positive_topic.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.delete") %>' +
+          '<%= link_to "", edit_retrospective_positive_topic_path(@retrospective.id, @positive_topic.id), remote: true, class: "ls-btn ls-color-danger ls-ico-pencil", title: t("button.delete") %>' +
           '<%= link_to "", [@retrospective, @positive_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.edit") %>' +
         '</div>' +
       '</td>' +

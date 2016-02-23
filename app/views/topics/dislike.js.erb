@@ -1,0 +1,9 @@
+<% if @topic.type === 'PositiveTopic' %>
+  var table = $('#positive-topics-table');
+<% else %>
+  var table = $('#negative-topics-table');
+<% end %>
+var line = table.find('[data-id=<%= @topic.id %>]');
+var dislikeButton = line.find('.dislike-button');
+
+dislikeButton.html('(' + <%= @topic.dislike %> + ')').blur();

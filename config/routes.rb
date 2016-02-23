@@ -8,6 +8,14 @@ Rails.application.routes.draw do
     resources :doubts
     resources :positive_topics
     resources :negative_topics
+
+  end
+
+  resources :topics do
+    member do
+      post :like
+      post :dislike
+    end
   end
 
   resources :demands do
