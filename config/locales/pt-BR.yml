@@ -43,6 +43,10 @@ pt-BR:
     cancel: 'Cancelar'
     pending: 'Pendente'
     completed: 'Concluída'
+  tag:
+    schedule: 'Horário'
+    date: 'Data'
+    room: 'Sala'
   new:
     page_title: 'Nova Retrospectiva'
   edit:

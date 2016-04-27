@@ -1,4 +1,8 @@
-<h1 class="ls-title-intro ls-ico-eye"><%= @retrospective.title %> - <%= l @retrospective.date.to_date, format: :default %></h1>
+<h1 class="ls-title-intro ls-ico-week"><%= @retrospective.title %></h1>
+
+<span class="ls-tag-info"><%= t('tag.date') %>: <%= l @retrospective.date.to_date, format: :default %></span>
+<span class="ls-tag-info"><%= t('tag.schedule') %>: <%= l @retrospective.schedule, format: :small %></span>
+<span class="ls-tag-info"><%= t('tag.room') %>: <%= @retrospective.room %></span>
 
 <!-- Actions -->
 <div class="ls-box ls-board-box">
