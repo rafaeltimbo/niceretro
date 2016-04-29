@@ -8,7 +8,7 @@
           <%= link_to t('menu.my_retrospectives'), root_path, class: 'ls-ico-home', title: t('menu.my_retrospectives') %>
         </li>
         <li>
-          <%= link_to t('menu.create_retrospective'), new_retrospective_path, class: 'ls-ico-plus', title: t('menu.create_retrospective') %>
+          <%= link_to t('menu.create_retrospective'), new_team_retrospective_path(current_team), class: 'ls-ico-plus', title: t('menu.create_retrospective') if current_team %>
         </li>
       </ul>
     </nav>

@@ -1,45 +1,45 @@
 class RetrospectivesController < ApplicationController
   def index
-    @retrospectives = Retrospective.all.order(date: :desc)
-    @next_retrospective = Retrospective.next
+    @retrospectives = Retrospective.where(team: current_team).order(date: :desc)
+    @next_retrospective = Retrospective.where(team: current_team).next
   end
 
   def new
-    @retrospective = Retrospective.new
+    @retrospective = Retrospective.new(team: current_team)
   end
 
   def create
-    @retrospective = Retrospective.new(retrospectives_params)
+    @retrospective = Retrospective.new(retrospectives_params.merge(team: current_team))
 
     if @retrospective.save
-      redirect_to retrospectives_path
+      redirect_to team_retrospectives_path(current_team)
     end
   end
 
   def edit
-    @retrospective = Retrospective.find(params[:id])
+    @retrospective = current_team.retrospectives.find(params[:id])
   end
 
   def update
-    @retrospective = Retrospective.find(params[:id])
+    @retrospective = current_team.retrospectives.find(params[:id])
     if @retrospective.update_attributes(retrospectives_params)
-      redirect_to retrospectives_path
+      redirect_to team_retrospectives_path(current_team)
     else
       render :edit
     end
   end
 
   def destroy
-    @retrospective = Retrospective.find(params[:id])
+    @retrospective = current_team.retrospectives.find(params[:id])
     @retrospective.destroy
 
     if @retrospective.destroyed?
-      redirect_to retrospectives_path
+      redirect_to team_retrospectives_path(current_team)
     end
   end
 
   def show
-    @retrospective = Retrospective.find(params[:id])
+    @retrospective = current_team.retrospectives.find(params[:id])
     @latest_demands = Demand.latest_demands(@retrospective)
     @is_enabled = @retrospective.is_enabled?
     demands

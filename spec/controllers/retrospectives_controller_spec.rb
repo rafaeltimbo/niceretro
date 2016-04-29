@@ -6,14 +6,17 @@ describe RetrospectivesController do
   end
 
   describe 'GET #index' do
-    before { get :index }
+    before do
+      create(:retrospective)
+      get :index, team_id: retrospective.team_id
+    end
 
-    it 'assigns all retrospectives to @retrospectives' do
+    it 'assigns all retrospectives of a team to @retrospectives' do
       expect(assigns(:retrospectives)).to eq([retrospective])
     end
 
     it 'assigns next retrospective to @next_retrospective' do
-      expect(assigns(:next_retrospective)).to eq([retrospective])
+      expect(assigns(:next_retrospective)).to eq(retrospective)
     end
 
     it { is_expected.to respond_with :ok }
@@ -21,7 +24,7 @@ describe RetrospectivesController do
   end
 
   describe 'GET #new' do
-    before { get :new }
+    before { get :new, team_id: retrospective.team_id }
 
     it 'assigns a new retrospective to @retrospective' do
       expect(assigns(:retrospective)).to be_a_new(Retrospective)
@@ -33,14 +36,14 @@ describe RetrospectivesController do
 
   describe 'POST #create' do
     before do
-      post :create, retrospective: attributes_for(:retrospective)
+      post :create, team_id: retrospective.team_id, retrospective: attributes_for(:retrospective)
     end
 
-    it { is_expected.to redirect_to retrospectives_path }
+    it { is_expected.to redirect_to team_retrospectives_path }
   end
 
   describe 'GET #edit' do
-    before { get :edit, id: retrospective.id }
+    before { get :edit, team_id: retrospective.team_id, id: retrospective.id }
 
     it 'assigns a retrospective to be edited to @retrospective' do
       expect(assigns(:retrospective)).to eq(retrospective)
@@ -51,20 +54,20 @@ describe RetrospectivesController do
 
   describe 'PUT #update' do
     before do
-      put :update, id: retrospective.id, retrospective: { title: 'retro2' }
+      put :update, team_id: retrospective.team_id, id: retrospective.id, retrospective: { title: 'retro2' }
     end
 
     it 'should have the edited data' do
       expect(retrospective.reload.title).to eq('retro2')
     end
 
-    it { is_expected.to redirect_to retrospectives_path }
+    it { is_expected.to redirect_to team_retrospectives_path(retrospective.team) }
   end
 
   describe 'DELETE #destroy' do
-    before { delete :destroy, id: retrospective.id }
+    before { delete :destroy, team_id: retrospective.team_id, id: retrospective.id }
 
-    it { is_expected.to redirect_to retrospectives_path }
+    it { is_expected.to redirect_to team_retrospectives_path(retrospective.team) }
   end
 
   describe 'GET #show' do
@@ -92,7 +95,7 @@ describe RetrospectivesController do
       create(:negative_topic, retrospective_id: retrospective.id)
     end
 
-    before { get :show, id: retrospective.id }
+    before { get :show, team_id: retrospective.team_id, id: retrospective.id }
 
     it 'render show template' do
       expect(response).to render_template('show')
