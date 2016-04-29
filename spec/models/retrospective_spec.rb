@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Retrospective, type: :model do
   let(:retrospective) { create(:retrospective) }
 
+  it { is_expected.to belong_to(:team) }
+
   describe '#is_enabled?' do
     context 'when not exists a newer retrospective' do
       it 'return true' do

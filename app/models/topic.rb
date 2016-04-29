@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+  belongs_to :team
   belongs_to :retrospective
 
   def improve_like
