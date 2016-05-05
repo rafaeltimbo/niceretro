@@ -9,6 +9,6 @@ class Retrospective < ActiveRecord::Base
   scope :next, -> { order(date: :desc).first }
 
   def is_enabled?
-    self == Retrospective.next
+    self == team.retrospectives.next
   end
 end

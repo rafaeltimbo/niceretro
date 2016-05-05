@@ -19,7 +19,7 @@
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
           '<%= link_to "", edit_retrospective_demand_path(@retrospective.id, @demand.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.edit") %>' +
-          '<%= link_to "", [@retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.delete") %>' +
+          '<%= link_to "", [current_team, @retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.delete") %>' +
         '</div>' +
       '</td>' +
     '</tr>'

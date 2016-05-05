@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   root 'teams#index'
 
   resources :teams, only: [:index] do
-    resources :retrospectives
+    resources :retrospectives do
+      resources :demands
+      resources :doubts
+      resources :positive_topics
+      resources :negative_topics
+    end
   end
 
   resources :topics do

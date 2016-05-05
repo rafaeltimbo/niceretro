@@ -72,27 +72,33 @@ describe RetrospectivesController do
 
   describe 'GET #show' do
     let!(:old_retro) do
-      create(:retrospective, title: 'Old retrospective', date: '24/11/2015')
+      create(:retrospective, title: 'Old retrospective',
+              date: '24/11/2015', team: retrospective.team)
     end
 
     let!(:old_demand) do
-      create(:demand, retrospective_id: old_retro.id, created_at: '24/11/2015')
+      create(:demand, retrospective_id: old_retro.id,
+              created_at: '24/11/2015', team: retrospective.team)
     end
 
     let!(:demand) do
-      create(:demand, retrospective_id: retrospective.id)
+      create(:demand,
+              retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     let!(:doubt) do
-      create(:doubt, retrospective_id: retrospective.id)
+      create(:doubt,
+              retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     let!(:positive_topic) do
-      create(:positive_topic, retrospective_id: retrospective.id)
+      create(:positive_topic,
+              retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     let!(:negative_topic) do
-      create(:negative_topic, retrospective_id: retrospective.id)
+      create(:negative_topic,
+              retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     before { get :show, team_id: retrospective.team_id, id: retrospective.id }
