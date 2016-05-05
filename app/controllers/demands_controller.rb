@@ -7,28 +7,28 @@ class DemandsController < ApplicationController
   end
 
   def create
-    @retrospective = Retrospective.find(@retrospective_id)
+    @retrospective = current_team.retrospectives.find(@retrospective_id)
     @demand = @retrospective.demands.build(demands_params)
     @demand.save
   end
 
   def destroy
-    @demand = Demand.find(params[:id])
+    @demand = current_team.demands.find(params[:id])
     @demand.destroy
   end
 
   def edit
-    @retrospective = Retrospective.find(@retrospective_id)
-    @demand = Demand.find(params[:id])
+    @retrospective = current_team.retrospectives.find(@retrospective_id)
+    @demand = current_team.demands.find(params[:id])
   end
 
   def update
-    @demand = Demand.find(params[:id])
+    @demand = current_team.demands.find(params[:id])
     @demand.update_attributes(demands_params)
   end
 
   def update_status
-    @demand = Demand.find(params[:id])
+    @demand = current_team.demands.find(params[:id])
     @demand.status = !@demand.status
     @demand.status ? @demand.resolved_at = Date.today : @demand.resolved_at = nil
     @demand.save
