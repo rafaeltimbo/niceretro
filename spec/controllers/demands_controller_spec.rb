@@ -21,7 +21,7 @@ describe DemandsController do
                       retrospective_id: retrospective.id,
                       demand: attributes_for(:demand),
                       format: :js
-      end.to change { retrospective.demands.count }.by +1
+      end.to change { team.demands.count }.by +1
     end
   end
 
@@ -40,7 +40,7 @@ describe DemandsController do
                          retrospective_id: retrospective.id,
                          id: demand.id,
                          format: :js
-      end.to change { retrospective.demands.count }.by -1
+      end.to change { team.demands.count }.by -1
     end
 
     context 'when demand does not exist' do
@@ -142,6 +142,7 @@ describe DemandsController do
   describe 'POST #update_status' do
     it 'return success status' do
       post :update_status, team_id: retrospective.team_id,
+                           retrospective_id: retrospective.id,
                            id: demand.id,
                            format: :js,
                            demand: { status: true }
@@ -150,6 +151,7 @@ describe DemandsController do
 
     it 'change the demand status' do
       post :update_status, team_id: retrospective.team_id,
+                           retrospective_id: retrospective.id,
                            id: demand.id,
                            format: :js,
                            demand: { status: true }
@@ -159,6 +161,7 @@ describe DemandsController do
     context 'when resolve a demand' do
       it 'add the resolved date' do
         post :update_status, team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
                              id: demand.id,
                              format: :js,
                              demand: { status: true }
@@ -169,6 +172,7 @@ describe DemandsController do
     context 'when get back on a resolved demand' do
       before do
         post :update_status, team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
                              id: demand.id,
                              format: :js,
                              demand: { status: true }
@@ -176,6 +180,7 @@ describe DemandsController do
 
       it 'remove the resolve date' do
         post :update_status, team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
                              id: demand.id,
                              format: :js,
                              demand: { status: false }
@@ -188,6 +193,7 @@ describe DemandsController do
 
       it 'return 404 error status' do
         post :update_status, team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
                              id: demand.id,
                              format: :js,
                              demand: { status: true }
@@ -196,6 +202,7 @@ describe DemandsController do
 
       it 'render not found template' do
         post :update_status, team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
                              id: demand.id,
                              format: :js,
                              demand: { status: true }

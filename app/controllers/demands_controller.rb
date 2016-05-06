@@ -8,7 +8,7 @@ class DemandsController < ApplicationController
 
   def create
     @retrospective = current_team.retrospectives.find(@retrospective_id)
-    @demand = @retrospective.demands.build(demands_params)
+    @demand = @retrospective.demands.build(demands_params.merge(team: current_team))
     @demand.save
   end
 

@@ -33,7 +33,7 @@
                 <%= check_box_tag '', '1',  d.status %>
                 <label class="ls-switch-label" ls-switch-off="<%= t('button.pending') %>" ls-switch-on="<%= t('button.completed') %>"><span></span></label>
               </div>
-              <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+              <%= link_to '', update_status_team_retrospective_demand_path(current_team.id, @retrospective.id, d.id), remote: true, class: 'ls-display-none' %>
             </td>
             <td class="days">
               <%= !d.status ? d.opened_days.to_s + ' ' + t('table.days') : '--' %>
@@ -76,7 +76,7 @@
                   <%= check_box_tag '', '1',  d.status %>
                   <label class="ls-switch-label" ls-switch-off="<%= t('button.pending') %>" ls-switch-on="<%= t('button.completed') %>"><span></span></label>
                 </div>
-              <%= link_to '', update_status_demand_path(d.id), remote: true, class: 'ls-display-none' %>
+              <%= link_to '', update_status_team_retrospective_demand_path(current_team.id, @retrospective.id, d.id), remote: true, class: 'ls-display-none' %>
               </td>
               <td>
                 <%= d.opened_days %> <%= t('table.days') %>

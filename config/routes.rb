@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :teams, only: [:index] do
     resources :retrospectives do
-      resources :demands
+      resources :demands do
+        get 'update_status', on: :member
+      end
       resources :doubts
       resources :positive_topics
       resources :negative_topics
@@ -14,12 +16,6 @@ Rails.application.routes.draw do
     member do
       post :like
       post :dislike
-    end
-  end
-
-  resources :demands do
-    member do
-      get 'update_status'
     end
   end
 end
