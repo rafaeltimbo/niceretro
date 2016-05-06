@@ -20,7 +20,7 @@ describe DoubtsController do
                       retrospective_id: retrospective.id,
                       doubt: attributes_for(:doubt),
                       format: :js
-      end.to change { team.doubts.count }.by +1
+      end.to change { retrospective.doubts.count }.by +1
     end
   end
 
@@ -31,7 +31,7 @@ describe DoubtsController do
                          retrospective_id: retrospective.id,
                          id: doubt.id,
                          format: :js
-      end.to change { team.doubts.count }.by -1
+      end.to change { retrospective.doubts.count }.by -1
     end
 
     it 'delete a doubt' do
@@ -40,7 +40,7 @@ describe DoubtsController do
                          retrospective_id: retrospective.id,
                          id: doubt.id,
                          format: :js
-      end.to change { team.doubts.count }.by -1
+      end.to change { retrospective.doubts.count }.by -1
     end
 
     context 'when doubt does not exist' do
