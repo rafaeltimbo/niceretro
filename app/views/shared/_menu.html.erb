@@ -5,7 +5,10 @@
     <nav class="ls-menu">
       <ul>
         <li>
-          <%= link_to t('menu.my_retrospectives'), root_path, class: 'ls-ico-home', title: t('menu.my_retrospectives') %>
+          <%= link_to t('menu.teams'), root_path, class: 'ls-ico-users', title: t('menu.teams') %>
+        </li>
+        <li>
+          <%= link_to t('menu.my_retrospectives'), team_retrospectives_path(current_team), class: 'ls-ico-calendar', title: t('menu.my_retrospectives') if current_team %>
         </li>
         <li>
           <%= link_to t('menu.create_retrospective'), new_team_retrospective_path(current_team), class: 'ls-ico-plus', title: t('menu.create_retrospective') if current_team %>
