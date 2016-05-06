@@ -1,6 +1,5 @@
 class NegativeTopicsController < ApplicationController
   include RemoteFormErrorsHelper
-
   respond_to :html, :js
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

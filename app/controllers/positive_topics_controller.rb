@@ -1,6 +1,5 @@
 class PositiveTopicsController < ApplicationController
   include RemoteFormErrorsHelper
-
   respond_to :js
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -14,8 +13,7 @@ class PositiveTopicsController < ApplicationController
   end
 
   def destroy
-    @retrospective = retrospective
-    @positive_topic = @retrospective.positive_topics.find(params[:id])
+    @positive_topic = retrospective.positive_topics.find(params[:id])
     @positive_topic.destroy
   end
 
@@ -25,8 +23,7 @@ class PositiveTopicsController < ApplicationController
   end
 
   def update
-    @retrospective = retrospective
-    @positive_topic = @retrospective.positive_topics.find(params[:id])
+    @positive_topic = retrospective.positive_topics.find(params[:id])
     @positive_topic.update_attributes(positive_topics_params)
   end
 
