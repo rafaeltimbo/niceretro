@@ -13,8 +13,8 @@
       '</td>' +
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
-          '<%= link_to "", edit_retrospective_positive_topic_path(@retrospective.id, @positive_topic.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.delete") %>' +
-          '<%= link_to "", [@retrospective, @positive_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.edit") %>' +
+          '<%= link_to "", edit_team_retrospective_positive_topic_path(current_team.id, @retrospective.id, @positive_topic.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.delete") %>' +
+          '<%= link_to "", [current_team, @retrospective, @positive_topic], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.edit") %>' +
         '</div>' +
       '</td>' +
     '</tr>'
