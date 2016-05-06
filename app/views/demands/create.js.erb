@@ -3,7 +3,7 @@
 <% else %>
   // Add the demand line to table
   $('#demands-table').find('tbody').append(
-    '<tr data-id="<%= @demand.id %>">' +
+    '<tr data-demand-id="<%= @demand.id %>">' +
       '<td class="description"><%= @demand.description %></td>' +
       '<td class="user"><%= @demand.user %></td>' +
       '<td>' +

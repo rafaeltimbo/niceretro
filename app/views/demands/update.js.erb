@@ -1,5 +1,5 @@
 var demandsTable = $('#demands-table');
-var editLine = demandsTable.find('[data-id="' + <%= @demand.id %> + '"]');
+var editLine = demandsTable.find('[data-demand-id="' + <%= @demand.id %> + '"]');
 
 demandsTable.next('form').remove();
 demandsTable.find('.ls-width-200').removeClass('ls-width-200').addClass('ls-width-150');

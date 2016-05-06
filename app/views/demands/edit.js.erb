@@ -1,5 +1,5 @@
 var demandsTable = $('#demands-table');
-var editLine = demandsTable.find('[data-id="' + <%= @demand.id %> + '"]');
+var editLine = demandsTable.find('[data-demand-id="' + <%= @demand.id %> + '"]');
 
 function submitEditedLine() {
   var editForm = $('#edit_demand_' + <%= @demand.id %>);
