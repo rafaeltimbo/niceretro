@@ -3,5 +3,4 @@ class Team < ActiveRecord::Base
 
   has_many :retrospectives
   has_many :demands
-  has_many :doubts
 end
