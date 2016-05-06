@@ -1,20 +1,25 @@
 require 'rails_helper'
 
 describe NegativeTopicsController do
-  let(:retrospective) { create(:retrospective) }
-  let!(:negative_topic) { create(:negative_topic) }
+  let(:team) { create(:team) }
+  let(:retrospective) { create(:retrospective, team: team) }
+  let!(:negative_topic) { create(:negative_topic, retrospective: retrospective, team: team) }
 
   describe 'POST #create' do
     it 'return success status' do
-      post :create, negative_topic: attributes_for(:negative_topic),
-        retrospective_id: retrospective.id, format: :js
+      post :create, team_id: retrospective.team_id,
+                    retrospective_id: retrospective.id,
+                    negative_topic: attributes_for(:negative_topic),
+                    format: :js
       expect(response).to have_http_status(200)
     end
 
     it 'create a negative topic' do
       expect do
-        post :create, negative_topic: attributes_for(:negative_topic),
-          retrospective_id: retrospective.id, format: :js
+        post :create, team_id: retrospective.team_id,
+                      retrospective_id: retrospective.id,
+                      negative_topic: attributes_for(:negative_topic),
+                      format: :js
       end.to change { NegativeTopic.count }.by +1
     end
   end

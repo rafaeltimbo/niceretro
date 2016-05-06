@@ -1,7 +1,6 @@
 class NegativeTopicsController < ApplicationController
   include RemoteFormErrorsHelper
 
-  before_action :retrospective_id
   respond_to :html, :js
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -9,17 +8,19 @@ class NegativeTopicsController < ApplicationController
   end
 
   def create
-    @retrospective = Retrospective.find(@retrospective_id)
+    @retrospective = retrospective
     @negative_topic = @retrospective.negative_topics.build(negative_topics_params)
     @negative_topic.save
   end
 
   def destroy
+    @retrospective = retrospective
     @negative_topic = NegativeTopic.find(params[:id])
     @negative_topic.destroy
   end
 
   def edit
+    @retrospective = retrospective
     @retrospective = Retrospective.find(@retrospective_id)
     @negative_topic = NegativeTopic.find(params[:id])
   end
@@ -35,7 +36,7 @@ class NegativeTopicsController < ApplicationController
     params.require(:negative_topic).permit(:description)
   end
 
-  def retrospective_id
-    @retrospective_id = params[:retrospective_id]
+  def retrospective
+    current_team.retrospectives.find(params[:retrospective_id])
   end
 end

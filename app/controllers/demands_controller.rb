@@ -18,7 +18,6 @@ class DemandsController < ApplicationController
   end
 
   def edit
-    @retrospective = current_team.retrospectives.find(@retrospective_id)
     @demand = current_team.demands.find(params[:id])
   end
 

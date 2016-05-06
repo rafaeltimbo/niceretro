@@ -11,7 +11,7 @@
           '<input type="checkbox">' +
           '<label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>' +
         '</div>' +
-        '<%= link_to '', update_status_demand_path(@demand.id), remote: true, class: "ls-display-none" %>' +
+        '<%= link_to '', update_status_team_retrospective_demand_path(current_team.id, @retrospective.id, @demand.id), remote: true, class: "ls-display-none" %>' +
       '</td>' +
       '<td class="days">' +
         '<%= !@demand.status ? @demand.opened_days.to_s + " " + t("table.days") : "--" %>' +

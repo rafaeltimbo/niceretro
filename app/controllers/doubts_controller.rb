@@ -7,23 +7,23 @@ class DoubtsController < ApplicationController
   end
 
   def create
-    @retrospective = Retrospective.find(@retrospective_id)
-    @doubt = @retrospective.doubts.build(doubts_params)
+    @retrospective = current_team.retrospectives.find(@retrospective_id)
+    @doubt = @retrospective.doubts.build(doubts_params.merge(team: current_team))
     @doubt.save
   end
 
   def destroy
-    @doubt = Doubt.find(params[:id])
+    @doubt = current_team.doubts.find(params[:id])
     @doubt.destroy
   end
 
   def edit
-    @retrospective = Retrospective.find(@retrospective_id)
-    @doubt = Doubt.find(params[:id])
+    @retrospective = current_team.retrospectives.find(@retrospective_id)
+    @doubt = current_team.doubts.find(params[:id])
   end
 
   def update
-    @doubt = Doubt.find(params[:id])
+    @doubt = current_team.doubts.find(params[:id])
     @doubt.update_attributes(doubts_params)
   end
 
