@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Demand, type: :model do
   let(:demand) { create(:demand) }
 
+  it { is_expected.to belong_to(:team) }
+
   describe '#opened_days' do
     context 'when the demand was created at 01/01/2016 and compared with
       31/01/2016' do

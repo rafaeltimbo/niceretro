@@ -1,4 +1,5 @@
 class Demand < ActiveRecord::Base
+  belongs_to :team
   belongs_to :retrospective
 
   scope :latest_demands, ->(retrospective) {

@@ -17,6 +17,7 @@ pt-BR:
     initial_page: 'Página Inicial'
     my_retrospectives: 'Minhas Retrospectivas'
     create_retrospective: 'Criar Retrospectiva'
+    teams: 'Times'
   table:
     title: 'Título'
     date: 'Data'
@@ -63,6 +64,10 @@ pt-BR:
     schedule: 'Horário'
     description: 'Descrição'
     user: 'Usuário'
+  teams:
+    index:
+      title: 'Times'
+      admin: 'Administrar'
 
   activerecord:
     errors:

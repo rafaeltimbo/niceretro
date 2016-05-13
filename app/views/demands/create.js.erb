@@ -3,7 +3,7 @@
 <% else %>
   // Add the demand line to table
   $('#demands-table').find('tbody').append(
-    '<tr data-id="<%= @demand.id %>">' +
+    '<tr data-demand-id="<%= @demand.id %>">' +
       '<td class="description"><%= @demand.description %></td>' +
       '<td class="user"><%= @demand.user %></td>' +
       '<td>' +
@@ -11,15 +11,15 @@
           '<input type="checkbox">' +
           '<label class="ls-switch-label" ls-switch-off="Pendente" ls-switch-on="Concluída"><span></span></label>' +
         '</div>' +
-        '<%= link_to '', update_status_demand_path(@demand.id), remote: true, class: "ls-display-none" %>' +
+        '<%= link_to '', update_status_team_retrospective_demand_path(current_team.id, @retrospective.id, @demand.id), remote: true, class: "ls-display-none" %>' +
       '</td>' +
       '<td class="days">' +
         '<%= !@demand.status ? @demand.opened_days.to_s + " " + t("table.days") : "--" %>' +
       '</td>' +
       '<td class="actions">' +
         '<div class="ls-group-btn">' +
-          '<%= link_to "", edit_retrospective_demand_path(@retrospective.id, @demand.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.edit") %>' +
-          '<%= link_to "", [@retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.delete") %>' +
+          '<%= link_to "", edit_team_retrospective_demand_path(current_team, @retrospective.id, @demand.id), remote: true, class: "ls-btn ls-ico-pencil", title: t("button.edit") %>' +
+          '<%= link_to "", [current_team, @retrospective, @demand], class: "ls-btn-danger ls-ico-close", method: :delete, remote: true, title: t("button.delete") %>' +
         '</div>' +
       '</td>' +
     '</tr>'
