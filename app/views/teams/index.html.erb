@@ -1,15 +1,18 @@
 <div class="container-fluid">
   <h1 class="ls-title-intro ls-ico-list2 ls-no-bg"><%= t('.title') %></h1>
-  <% @teams.each do |team| %>
-    <div class="ls-list">
-      <header class="ls-list-header">
-        <div class="ls-list-title col-md-4">
-          <a href="/locawebstyle/documentacao/exemplos/painel1/home"><%= team.name %></a>
-        </div>
-        <div class="col-md-3 col-md-offset-5 ls-txt-right">
-          <%= link_to t('.admin'), team_retrospectives_path(team.id), { class: 'ls-btn-primary ls-btn-sm' } %>
-        </div>
-      </header>
-    </div>
-  <% end %>
+
+  <div id="teams-list">
+    <% @teams.each do |team| %>
+      <div class="ls-list">
+        <header class="ls-list-header">
+          <div class="ls-list-title col-md-4">
+            <a href="/locawebstyle/documentacao/exemplos/painel1/home"><%= team.name %></a>
+          </div>
+          <div class="col-md-3 col-md-offset-5 ls-txt-right">
+            <%= link_to t('.admin'), team_retrospectives_path(team.id), { class: 'ls-btn-primary ls-btn-sm' } %>
+          </div>
+        </header>
+      </div>
+    <% end %>
+  </div>
 </div>

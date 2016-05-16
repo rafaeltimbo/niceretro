@@ -1,0 +1,27 @@
+var teamsList = $('#teams-list');
+
+teamsList.append(
+  '<div class="ls-list">' +
+    '<%= form_for @team do |f| %>' +
+      '<header class="ls-list-header">' +
+        '<div class="ls-list-title col-md-4">' +
+          '<div class="ls-label">' +
+            '<%= f.text_field :name, placeholder: "Coloque o nome do time aqui" %>' +
+          '</div>' +
+        '</div>' +
+        '<div class="col-md-3 col-md-offset-5 ls-txt-right">' +
+          '<%= f.submit "Salvar", class: "ls-btn ls-btn-primary" %>' +
+          '<%= link_to "Cancelar", "#", { class: "ls-btn cancel-new-team" } %>' +
+        '</div>' +
+      '</header>' +
+    '<% end %>' +
+  '</div>'
+);
+
+function cancelNewteam() {
+  $('.cancel-new-team').off('click').on('click', function() {
+    $(this).closest('.ls-list').remove();
+  });
+}
+
+cancelNewteam();

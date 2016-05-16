@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'teams#index'
 
-  resources :teams, only: [:index] do
+  resources :teams, only: [:index, :new, :create] do
     resources :retrospectives do
       resources :demands do
         get 'update_status', on: :member
