@@ -3,7 +3,7 @@ pt-BR:
   initial_page: 'Página Inicial'
   confirm: Você tem certeza que deseja excluir?
   title:
-    my_retrospectives: 'Minhas Retrospectivas'
+    retrospectives: 'Retrospectivas'
     next_retrospective: 'Próxima Retrospectiva'
     retrospectives_historic: 'Histórico de Retrospectivas'
     retrospectives_list: 'Lista de Restrospectivas'
@@ -15,7 +15,7 @@ pt-BR:
     edit_retrospective: 'Editar Retrospectiva'
   menu:
     initial_page: 'Página Inicial'
-    my_retrospectives: 'Minhas Retrospectivas'
+    retrospectives: 'Retrospectivas'
     create_retrospective: 'Criar Retrospectiva'
     teams: 'Times'
   table:

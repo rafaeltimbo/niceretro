@@ -1,0 +1,25 @@
+var teamList = $('.new-team-input').closest('.ls-list');
+
+teamList.before(
+  '<div class="ls-list">' +
+    '<header class="ls-list-header">' +
+      '<div class="ls-list-title col-md-4">' +
+        '<%= link_to @team.name, team_retrospectives_path(@team.id) %>' +
+      '</div>' +
+      '<div class="col-md-3 col-md-offset-5 ls-txt-right">' +
+        '<%= link_to "Administrar", team_retrospectives_path(@team.id), { class: "ls-btn-primary ls-btn-sm" } %>' +
+      '</div>' +
+    '</header>' +
+  '</div>'
+);
+
+teamList.remove();
+
+$('[class*="ls-alert"]').remove();
+$('.ls-title-intro').after(
+  '<div class="ls-alert-success ls-dismissable">' +
+    '<span data-ls-module="dismiss" class="ls-dismiss">&times;</span>' +
+    '<strong>Sucesso:</strong> O time "<strong><%= @team.name %></strong>" foi inserido com sucesso!' +
+  '</div>'
+);
+locastyle.dismiss.init();

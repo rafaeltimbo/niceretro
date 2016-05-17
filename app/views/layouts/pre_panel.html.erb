@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="ls-theme-orange ls-pre-panel">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Niceretro</title>
+
+  <%= stylesheet_link_tag 'http://assets.locaweb.com.br/locastyle/3.8.3/stylesheets/locastyle.css' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= favicon_link_tag 'favicon.ico', rel: 'shortcut icon', type: 'image/x-icon' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= render 'shared/pre_panel_topbar' %>
+
+  <%= render 'shared/pre_panel_menu' %>
+
+  <main class="ls-main">
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+    <%= render 'shared/footer' %>
+  </main>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'http://assets.locaweb.com.br/locastyle/3.8.3/javascripts/locastyle.js' %>
+  <%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js' %>
+  <%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js' %>
+
+</body>
+</html>
