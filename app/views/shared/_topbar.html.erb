@@ -27,9 +27,8 @@
   <span class="ls-show-sidebar ls-ico-menu"></span>
 
   <h1 class="ls-brand-name">
-    <%= link_to root_path(), class: 'ls-ico-week' do %>
-      <small>v0.0.1</small>
-      <%= t('niceretro') %>
+    <%= link_to root_path(), class: 'ls-ico-week ls-v-align-middle' do %>
+      <%= t('niceretro') %> / <%= current_team.name %>
     <% end %>
   </h1>
 </div>
