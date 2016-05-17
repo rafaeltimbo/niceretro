@@ -11,7 +11,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    binding.pry
     @team = Team.new(teams_params)
     @team.save
   end

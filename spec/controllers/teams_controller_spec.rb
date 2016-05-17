@@ -27,14 +27,13 @@ RSpec.describe TeamsController do
 
   describe 'POST #create' do
     it 'return success status' do
-      post :create, name: team.name, format: :js
-      binding.pry
+      post :create, team: attributes_for(:team), format: :js
       expect(response).to have_http_status(200)
     end
 
-    it 'creates a doubt' do
+    it 'creates a team' do
       expect do
-        post :create, name: team.name, format: :js
+        post :create, team: attributes_for(:team), format: :js
       end.to change { Team.count }.by +1
     end
   end
