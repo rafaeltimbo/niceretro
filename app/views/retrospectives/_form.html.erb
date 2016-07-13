@@ -23,7 +23,7 @@
       <div class="col-md-4">
         <label class="ls-label">
           <b class="ls-label-text"><%= t('form.schedule') %>:</b>
-          <%= f.time_field :schedule, required: true %>
+          <%= f.time_field :schedule, value: @retrospective.schedule, required: true %>
         </label>
       </div>
       <div class="col-md-12">

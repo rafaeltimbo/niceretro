@@ -5,7 +5,8 @@ class RetrospectivesController < ApplicationController
   end
 
   def new
-    @retrospective = Retrospective.new(team: current_team)
+    @retrospective = RetrospectiveDecorator.new(Retrospective
+                                                .new(team: current_team))
   end
 
   def create
@@ -17,7 +18,9 @@ class RetrospectivesController < ApplicationController
   end
 
   def edit
-    @retrospective = current_team.retrospectives.find(params[:id])
+    @retrospective = RetrospectiveDecorator.new(current_team
+                                                .retrospectives
+                                                .find(params[:id]))
   end
 
   def update
