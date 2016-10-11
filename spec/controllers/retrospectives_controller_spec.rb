@@ -27,7 +27,7 @@ describe RetrospectivesController do
     before { get :new, team_id: retrospective.team_id }
 
     it 'assigns a new retrospective to @retrospective' do
-      expect(assigns(:retrospective)).to be_a_new(Retrospective)
+      expect(assigns(:retrospective)).to be_kind_of(RetrospectiveDecorator)
     end
 
     it { is_expected.to respond_with :ok }
