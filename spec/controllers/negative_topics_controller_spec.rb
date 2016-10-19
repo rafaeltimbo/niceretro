@@ -7,38 +7,38 @@ describe NegativeTopicsController do
 
   describe 'POST #create' do
     it 'return success status' do
-      post :create, team_id: retrospective.team_id,
-                    retrospective_id: retrospective.id,
-                    negative_topic: attributes_for(:negative_topic),
-                    format: :js
+      post :create, params: { team_id: retrospective.team_id,
+                              retrospective_id: retrospective.id,
+                              negative_topic: attributes_for(:negative_topic),
+                              format: :js }
       expect(response).to have_http_status(200)
     end
 
     it 'create a negative topic' do
       expect do
-        post :create, team_id: retrospective.team_id,
-                      retrospective_id: retrospective.id,
-                      negative_topic: attributes_for(:negative_topic),
-                      format: :js
+        post :create, params: { team_id: retrospective.team_id,
+                                retrospective_id: retrospective.id,
+                                negative_topic: attributes_for(:negative_topic),
+                                format: :js }
       end.to change { retrospective.negative_topics.count }.by +1
     end
   end
 
   describe 'DELETE #destroy' do
     it 'return success status' do
-      delete :destroy, team_id: retrospective.team_id,
-                       retrospective_id: retrospective.id,
-                       id: negative_topic.id,
-                       format: :js
+      delete :destroy, params: { team_id: retrospective.team_id,
+                                 retrospective_id: retrospective.id,
+                                 id: negative_topic.id,
+                                 format: :js }
       expect(response).to have_http_status(200)
     end
 
     it 'delete a negative topic' do
       expect do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: negative_topic.id,
-                         format: :js
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: negative_topic.id,
+                                   format: :js }
       end.to change { retrospective.negative_topics.count }.by -1
     end
 
@@ -46,18 +46,18 @@ describe NegativeTopicsController do
       before { negative_topic.destroy }
 
       it 'return 404 error status' do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: negative_topic.id,
-                         format: :js
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: negative_topic.id,
+                                   format: :js }
         expect(response).to have_http_status(404)
       end
 
       it 'render not found template' do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: negative_topic.id,
-                         format: :js
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: negative_topic.id,
+                                   format: :js }
         expect(response).to render_template('negative_topics/not_found')
       end
     end
@@ -65,10 +65,10 @@ describe NegativeTopicsController do
 
   describe 'POST #edit' do
     it 'return success status' do
-      post :edit, team_id: retrospective.team_id,
-                  retrospective_id: retrospective.id,
-                  id: negative_topic.id,
-                  format: :js
+      post :edit, params: { team_id: retrospective.team_id,
+                            retrospective_id: retrospective.id,
+                            id: negative_topic.id,
+                            format: :js }
       expect(response).to have_http_status(200)
     end
 
@@ -76,18 +76,18 @@ describe NegativeTopicsController do
       before { negative_topic.destroy }
 
       it 'return 404 error status' do
-        post :edit, team_id: retrospective.team_id,
-                    retrospective_id: retrospective.id,
-                    id: negative_topic.id,
-                    format: :js
+        post :edit, params: { team_id: retrospective.team_id,
+                              retrospective_id: retrospective.id,
+                              id: negative_topic.id,
+                              format: :js }
         expect(response).to have_http_status(404)
       end
 
       it 'render not found template' do
-        post :edit, team_id: retrospective.team_id,
-                    retrospective_id: retrospective.id,
-                    id: negative_topic.id,
-                    format: :js
+        post :edit, params: { team_id: retrospective.team_id,
+                              retrospective_id: retrospective.id,
+                              id: negative_topic.id,
+                              format: :js }
         expect(response).to render_template('negative_topics/not_found')
       end
     end
@@ -95,20 +95,20 @@ describe NegativeTopicsController do
 
   describe 'PUT #update' do
     it 'return success status' do
-      put :update, team_id: retrospective.team_id,
-                   retrospective_id: retrospective.id,
-                   id: negative_topic.id,
-                   negative_topic: { description: 'Updated description' },
-                   format: :js
+      put :update, params: { team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
+                             id: negative_topic.id,
+                             negative_topic: { description: 'Updated description' },
+                             format: :js }
       expect(response).to have_http_status(200)
     end
 
     it 'change the negative topic description' do
-      put :update, team_id: retrospective.team_id,
-                   retrospective_id: retrospective.id,
-                   id: negative_topic.id,
-                   negative_topic: { description: 'Updated description' },
-                   format: :js
+      put :update, params: { team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
+                             id: negative_topic.id,
+                             negative_topic: { description: 'Updated description' },
+                             format: :js }
       expect(negative_topic.reload.description).to eq('Updated description')
     end
 
@@ -116,20 +116,20 @@ describe NegativeTopicsController do
       before { negative_topic.destroy }
 
       it 'return 404 error status' do
-        put :update, team_id: retrospective.team_id,
-                     retrospective_id: retrospective.id,
-                     id: negative_topic.id,
-                     negative_topic: { description: 'Updated description' },
-                     format: :js
+        put :update, params: { team_id: retrospective.team_id,
+                               retrospective_id: retrospective.id,
+                               id: negative_topic.id,
+                               negative_topic: { description: 'Updated description' },
+                               format: :js }
         expect(response).to have_http_status(404)
       end
 
       it 'render template not found' do
-        put :update, team_id: retrospective.team_id,
-                     retrospective_id: retrospective.id,
-                     id: negative_topic.id,
-                     negative_topic: { description: 'Updated description' },
-                     format: :js
+        put :update, params: { team_id: retrospective.team_id,
+                               retrospective_id: retrospective.id,
+                               id: negative_topic.id,
+                               negative_topic: { description: 'Updated description' },
+                               format: :js }
         expect(response).to render_template('negative_topics/not_found')
       end
     end

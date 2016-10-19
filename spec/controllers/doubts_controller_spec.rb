@@ -7,19 +7,19 @@ describe DoubtsController do
 
   describe 'POST #create' do
     it 'return success status' do
-      post :create, team_id: retrospective.team_id,
-                    retrospective_id: retrospective.id,
-                    doubt: attributes_for(:doubt),
-                    format: :js
+      post :create, params: { team_id: retrospective.team_id,
+                              retrospective_id: retrospective.id,
+                              doubt: attributes_for(:doubt),
+                              format: :js }
       expect(response).to have_http_status(200)
     end
 
     it 'creates a doubt' do
       expect do
-        post :create, team_id: retrospective.team_id,
-                      retrospective_id: retrospective.id,
-                      doubt: attributes_for(:doubt),
-                      format: :js
+        post :create, params: { team_id: retrospective.team_id,
+                                retrospective_id: retrospective.id,
+                                doubt: attributes_for(:doubt),
+                                format: :js }
       end.to change { retrospective.doubts.count }.by +1
     end
   end
@@ -27,38 +27,38 @@ describe DoubtsController do
   describe 'DELETE #destroy' do
     it 'return success status' do
       expect do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: doubt.id,
-                         format: :js
-      end.to change { retrospective.doubts.count }.by -1
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: doubt.id,
+                                   format: :js }
+      end.to change { retrospective. doubts.count }.by -1
     end
 
     it 'delete a doubt' do
       expect do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: doubt.id,
-                         format: :js
-      end.to change { retrospective.doubts.count }.by -1
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: doubt.id,
+                                   format: :js }
+      end.to change { retrospective. doubts.count }.by -1
     end
 
     context 'when doubt does not exist' do
       before { doubt.destroy }
 
       it 'return 404 error status' do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: doubt.id,
-                         format: :js
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: doubt.id,
+                                   format: :js }
         expect(response).to have_http_status(404)
       end
 
       it 'render not found template' do
-        delete :destroy, team_id: retrospective.team_id,
-                         retrospective_id: retrospective.id,
-                         id: doubt.id,
-                         format: :js
+        delete :destroy, params: { team_id: retrospective.team_id,
+                                   retrospective_id: retrospective.id,
+                                   id: doubt.id,
+                                   format: :js }
         expect(response).to render_template('doubts/not_found')
       end
     end
@@ -66,10 +66,10 @@ describe DoubtsController do
 
   describe 'POST #edit' do
     it 'return success status' do
-      post :edit, team_id: retrospective.team_id,
-                  retrospective_id: retrospective.id,
-                  id: doubt.id,
-                  format: :js
+      post :edit, params: { team_id: retrospective.team_id,
+                            retrospective_id: retrospective.id,
+                            id: doubt.id,
+                            format: :js }
       expect(response).to have_http_status(200)
     end
 
@@ -77,18 +77,18 @@ describe DoubtsController do
       before { doubt.destroy }
 
       it 'return 404 error status' do
-        post :edit, team_id: retrospective.team_id,
-                    retrospective_id: retrospective.id,
-                    id: doubt.id,
-                    format: :js
+        post :edit, params: { team_id: retrospective.team_id,
+                              retrospective_id: retrospective.id,
+                              id: doubt.id,
+                              format: :js }
         expect(response).to have_http_status(404)
       end
 
       it 'render not found template' do
-        post :edit, team_id: retrospective.team_id,
-                    retrospective_id: retrospective.id,
-                    id: doubt.id,
-                    format: :js
+        post :edit, params: { team_id: retrospective.team_id,
+                              retrospective_id: retrospective.id,
+                              id: doubt.id,
+                              format: :js }
         expect(response).to render_template('doubts/not_found')
       end
     end
@@ -96,20 +96,20 @@ describe DoubtsController do
 
   describe 'PUT #update' do
     it 'return success status' do
-      put :update, team_id: retrospective.team_id,
-                   retrospective_id: retrospective.id,
-                   id: doubt.id,
-                   doubt: { description: 'Updated description' },
-                   format: :js
+      put :update, params: { team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
+                             id: doubt.id,
+                             doubt: { description: 'Updated description' },
+                             format: :js }
       expect(response).to have_http_status(200)
     end
 
     it 'change the doubt description' do
-      put :update, team_id: retrospective.team_id,
-                   retrospective_id: retrospective.id,
-                   id: doubt.id,
-                   doubt: { description: 'Updated description' },
-                   format: :js
+      put :update, params: { team_id: retrospective.team_id,
+                             retrospective_id: retrospective.id,
+                             id: doubt.id,
+                             doubt: { description: 'Updated description' },
+                             format: :js }
       expect(doubt.reload.description).to eq('Updated description')
     end
 
@@ -117,20 +117,20 @@ describe DoubtsController do
       before { doubt.destroy }
 
       it 'return 404 error status' do
-        put :update, team_id: retrospective.team_id,
-                     retrospective_id: retrospective.id,
-                     id: doubt.id,
-                     doubt: { description: 'Updated description' },
-                     format: :js
+        put :update, params: { team_id: retrospective.team_id,
+                               retrospective_id: retrospective.id,
+                               id: doubt.id,
+                               doubt: { description: 'Updated description' },
+                               format: :js }
         expect(response).to have_http_status(404)
       end
 
       it 'render not_found template' do
-        put :update, team_id: retrospective.team_id,
-                     retrospective_id: retrospective.id,
-                     id: doubt.id,
-                     doubt: { description: 'Updated description' },
-                     format: :js
+        put :update, params: { team_id: retrospective.team_id,
+                               retrospective_id: retrospective.id,
+                               id: doubt.id,
+                               doubt: { description: 'Updated description' },
+                               format: :js }
         expect(response).to render_template('doubts/not_found')
       end
     end

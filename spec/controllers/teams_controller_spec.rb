@@ -15,7 +15,7 @@ RSpec.describe TeamsController do
   end
 
   describe 'GET #new' do
-    before { xhr :get, :new, format: :js }
+    before { get :new, xhr: true, format: :js }
 
     it 'assigns a new team to @team' do
       expect(assigns(:team)).to be_a_new(Team)
@@ -27,13 +27,13 @@ RSpec.describe TeamsController do
 
   describe 'POST #create' do
     it 'return success status' do
-      post :create, team: attributes_for(:team), format: :js
+      post :create, params: { team: attributes_for(:team), format: :js }
       expect(response).to have_http_status(200)
     end
 
     it 'creates a team' do
       expect do
-        post :create, team: attributes_for(:team), format: :js
+        post :create, params: { team: attributes_for(:team), format: :js }
       end.to change { Team.count }.by +1
     end
   end
