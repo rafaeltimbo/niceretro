@@ -8,7 +8,7 @@ describe RetrospectivesController do
   describe 'GET #index' do
     before do
       create(:retrospective)
-      get :index, team_id: retrospective.team_id
+      get :index, params: { team_id: retrospective.team_id }
     end
 
     it 'assigns all retrospectives of a team to @retrospectives' do
@@ -24,7 +24,7 @@ describe RetrospectivesController do
   end
 
   describe 'GET #new' do
-    before { get :new, team_id: retrospective.team_id }
+    before { get :new, params: { team_id: retrospective.team_id } }
 
     it 'assigns a new retrospective to @retrospective' do
       expect(assigns(:retrospective)).to be_kind_of(RetrospectiveDecorator)
@@ -36,14 +36,14 @@ describe RetrospectivesController do
 
   describe 'POST #create' do
     before do
-      post :create, team_id: retrospective.team_id, retrospective: attributes_for(:retrospective)
+      post :create, params: { team_id: retrospective.team_id, retrospective: attributes_for(:retrospective) }
     end
 
     it { is_expected.to redirect_to team_retrospectives_path }
   end
 
   describe 'GET #edit' do
-    before { get :edit, team_id: retrospective.team_id, id: retrospective.id }
+    before { get :edit, params: { team_id: retrospective.team_id, id: retrospective.id } }
 
     it 'assigns a retrospective to be edited to @retrospective' do
       expect(assigns(:retrospective)).to eq(retrospective)
@@ -54,7 +54,7 @@ describe RetrospectivesController do
 
   describe 'PUT #update' do
     before do
-      put :update, team_id: retrospective.team_id, id: retrospective.id, retrospective: { title: 'retro2' }
+      put :update, params: { team_id: retrospective.team_id, id: retrospective.id, retrospective: { title: 'retro2' } }
     end
 
     it 'should have the edited data' do
@@ -65,7 +65,7 @@ describe RetrospectivesController do
   end
 
   describe 'DELETE #destroy' do
-    before { delete :destroy, team_id: retrospective.team_id, id: retrospective.id }
+    before { delete :destroy, params: { team_id: retrospective.team_id, id: retrospective.id } }
 
     it { is_expected.to redirect_to team_retrospectives_path(retrospective.team) }
   end
@@ -73,35 +73,35 @@ describe RetrospectivesController do
   describe 'GET #show' do
     let!(:old_retro) do
       create(:retrospective, title: 'Old retrospective',
-              date: '24/11/2015', team: retrospective.team)
+                             date: '24/11/2015', team: retrospective.team)
     end
 
     let!(:old_demand) do
       create(:demand, retrospective_id: old_retro.id,
-              created_at: '24/11/2015', team: retrospective.team)
+                      created_at: '24/11/2015', team: retrospective.team)
     end
 
     let!(:demand) do
       create(:demand,
-              retrospective_id: retrospective.id, team: retrospective.team)
+             retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     let!(:doubt) do
       create(:doubt,
-              retrospective_id: retrospective.id, team: retrospective.team)
+             retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     let!(:positive_topic) do
       create(:positive_topic,
-              retrospective_id: retrospective.id, team: retrospective.team)
+             retrospective_id: retrospective.id, team: retrospective.team)
     end
 
     let!(:negative_topic) do
       create(:negative_topic,
-              retrospective_id: retrospective.id, team: retrospective.team)
+             retrospective_id: retrospective.id, team: retrospective.team)
     end
 
-    before { get :show, team_id: retrospective.team_id, id: retrospective.id }
+    before { get :show, params: { team_id: retrospective.team_id, id: retrospective.id } }
 
     it 'render show template' do
       expect(response).to render_template('show')

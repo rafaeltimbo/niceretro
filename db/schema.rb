@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -25,10 +24,9 @@ ActiveRecord::Schema.define(version: 20160429172656) do
     t.datetime "updated_at",                       null: false
     t.datetime "resolved_at"
     t.integer  "team_id"
+    t.index ["retrospective_id"], name: "index_demands_on_retrospective_id", using: :btree
+    t.index ["team_id"], name: "index_demands_on_team_id", using: :btree
   end
-
-  add_index "demands", ["retrospective_id"], name: "index_demands_on_retrospective_id", using: :btree
-  add_index "demands", ["team_id"], name: "index_demands_on_team_id", using: :btree
 
   create_table "doubts", force: :cascade do |t|
     t.text     "description"
@@ -36,10 +34,9 @@ ActiveRecord::Schema.define(version: 20160429172656) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "team_id"
+    t.index ["retrospective_id"], name: "index_doubts_on_retrospective_id", using: :btree
+    t.index ["team_id"], name: "index_doubts_on_team_id", using: :btree
   end
-
-  add_index "doubts", ["retrospective_id"], name: "index_doubts_on_retrospective_id", using: :btree
-  add_index "doubts", ["team_id"], name: "index_doubts_on_team_id", using: :btree
 
   create_table "retrospectives", force: :cascade do |t|
     t.string   "title"
@@ -49,9 +46,8 @@ ActiveRecord::Schema.define(version: 20160429172656) do
     t.datetime "updated_at", null: false
     t.time     "schedule"
     t.integer  "team_id"
+    t.index ["team_id"], name: "index_retrospectives_on_team_id", using: :btree
   end
-
-  add_index "retrospectives", ["team_id"], name: "index_retrospectives_on_team_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",       null: false
@@ -68,9 +64,8 @@ ActiveRecord::Schema.define(version: 20160429172656) do
     t.integer  "like",             default: 0
     t.integer  "dislike",          default: 0
     t.integer  "team_id"
+    t.index ["retrospective_id"], name: "index_topics_on_retrospective_id", using: :btree
+    t.index ["team_id"], name: "index_topics_on_team_id", using: :btree
   end
-
-  add_index "topics", ["retrospective_id"], name: "index_topics_on_retrospective_id", using: :btree
-  add_index "topics", ["team_id"], name: "index_topics_on_team_id", using: :btree
 
 end
