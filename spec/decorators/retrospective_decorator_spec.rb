@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe RetrospectiveDecorator do
-  let(:retrospective) { create(:retrospective, schedule: Time.parse('15:00')) }
+  let(:retrospective) { create(:retrospective, schedule: Time.zone.parse('15:00')) }
   let(:decorator) { described_class.new(retrospective) }
 
   describe '#schedule' do
