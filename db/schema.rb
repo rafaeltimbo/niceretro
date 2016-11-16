@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429172656) do
+ActiveRecord::Schema.define(version: 20161116194407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "configs", force: :cascade do |t|
+    t.string  "name"
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_configs_on_team_id", using: :btree
+  end
 
   create_table "demands", force: :cascade do |t|
     t.text     "description"
