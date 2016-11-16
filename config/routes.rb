@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :positive_topics
       resources :negative_topics
     end
+
+    resource :config, only: [:show]
   end
 
   resources :topics do

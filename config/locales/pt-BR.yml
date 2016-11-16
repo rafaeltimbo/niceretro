@@ -14,6 +14,7 @@ pt-BR:
     new_retrospective: 'Nova Retrospectiva'
     edit_retrospective: 'Editar Retrospectiva'
   menu:
+    config: 'Configurações'
     initial_page: 'Página Inicial'
     retrospectives: 'Retrospectivas'
     create_retrospective: 'Criar Retrospectiva'
