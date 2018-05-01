@@ -1,4 +1,4 @@
-class CreateDoubts < ActiveRecord::Migration
+class CreateDoubts < ActiveRecord::Migration[5.0]
   def change
     create_table :doubts do |t|
       t.text :description

@@ -1,4 +1,4 @@
-class AddTeamIdToTables < ActiveRecord::Migration
+class AddTeamIdToTables < ActiveRecord::Migration[5.0]
   def change
     add_reference :demands, :team, index: true
     add_reference :doubts, :team, index: true

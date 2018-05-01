@@ -10,62 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429172656) do
+ActiveRecord::Schema.define(version: 2016_04_29_172656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "demands", force: :cascade do |t|
-    t.text     "description"
-    t.integer  "retrospective_id"
-    t.string   "user"
-    t.boolean  "status",           default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+  create_table "demands", id: :serial, force: :cascade do |t|
+    t.text "description"
+    t.integer "retrospective_id"
+    t.string "user"
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.datetime "resolved_at"
-    t.integer  "team_id"
-    t.index ["retrospective_id"], name: "index_demands_on_retrospective_id", using: :btree
-    t.index ["team_id"], name: "index_demands_on_team_id", using: :btree
+    t.integer "team_id"
+    t.index ["retrospective_id"], name: "index_demands_on_retrospective_id"
+    t.index ["team_id"], name: "index_demands_on_team_id"
   end
 
-  create_table "doubts", force: :cascade do |t|
-    t.text     "description"
-    t.integer  "retrospective_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "team_id"
-    t.index ["retrospective_id"], name: "index_doubts_on_retrospective_id", using: :btree
-    t.index ["team_id"], name: "index_doubts_on_team_id", using: :btree
+  create_table "doubts", id: :serial, force: :cascade do |t|
+    t.text "description"
+    t.integer "retrospective_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "team_id"
+    t.index ["retrospective_id"], name: "index_doubts_on_retrospective_id"
+    t.index ["team_id"], name: "index_doubts_on_team_id"
   end
 
-  create_table "retrospectives", force: :cascade do |t|
-    t.string   "title"
+  create_table "retrospectives", id: :serial, force: :cascade do |t|
+    t.string "title"
     t.datetime "date"
-    t.integer  "room"
+    t.integer "room"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time     "schedule"
-    t.integer  "team_id"
-    t.index ["team_id"], name: "index_retrospectives_on_team_id", using: :btree
+    t.time "schedule"
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_retrospectives_on_team_id"
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string   "name",       null: false
+  create_table "teams", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "topics", force: :cascade do |t|
-    t.text     "description"
-    t.string   "type"
-    t.integer  "retrospective_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "like",             default: 0
-    t.integer  "dislike",          default: 0
-    t.integer  "team_id"
-    t.index ["retrospective_id"], name: "index_topics_on_retrospective_id", using: :btree
-    t.index ["team_id"], name: "index_topics_on_team_id", using: :btree
+  create_table "topics", id: :serial, force: :cascade do |t|
+    t.text "description"
+    t.string "type"
+    t.integer "retrospective_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "like", default: 0
+    t.integer "dislike", default: 0
+    t.integer "team_id"
+    t.index ["retrospective_id"], name: "index_topics_on_retrospective_id"
+    t.index ["team_id"], name: "index_topics_on_team_id"
   end
 
 end
