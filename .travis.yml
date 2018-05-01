@@ -1,6 +1,8 @@
 language: ruby
 rvm:
-  - 2.2.3
+  - 2.5.1
+before_install:
+  - gem install bundler
 before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/secrets.yml.example config/secrets.yml
