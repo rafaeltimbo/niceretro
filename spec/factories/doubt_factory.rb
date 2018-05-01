@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :doubt do
     description 'Doubt description'
     retrospective_id 1

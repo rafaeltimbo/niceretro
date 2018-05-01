@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :positive_topic do
     description 'Positive Topic description'
     retrospective_id 1
