@@ -19,3 +19,5 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=""
       - DB_HOST=db
+      - HTTP_BASIC_NAME=user
+      - HTTP_BASIC_PASS=pass
